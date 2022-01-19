@@ -272,7 +272,7 @@ function Login(email, password, token) {
 							})
 						})
 
-					}
+					})
 				})
 			})
 		})
